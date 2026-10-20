@@ -1,0 +1,735 @@
+{
+  "run_id": "20261020T141626-2b4f26",
+  "status": "pass",
+  "counts": {
+    "FLAG": 16,
+    "PASS": 8,
+    "FIX": 6,
+    "FILL": 1
+  },
+  "decisions": [
+    {
+      "gate": "gate0",
+      "check": "source_nih_idsr",
+      "rule": "GATE0-SOURCE",
+      "action": "PASS",
+      "table": "nih_idsr",
+      "rows_affected": 0,
+      "explanation": "NIH Pakistan IDSR weekly bulletins: ACCEPT - robots.txt allows this path; licence recorded; HTTP 200.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "85ccfacd06a5",
+      "ts_utc": "2026-10-20T14:17:19+00:00"
+    },
+    {
+      "gate": "gate0",
+      "check": "source_open_meteo",
+      "rule": "GATE0-SOURCE",
+      "action": "FLAG",
+      "table": "open_meteo",
+      "rows_affected": 0,
+      "explanation": "Open-Meteo historical + forecast weather: ACCEPT_API - robots.txt disallows /v1/archive (crawler rule on the API host); programmatic access is granted by the API terms https://open-meteo.com/en/terms and the source is on the organisers' list - CONFIRM WITH ORGANISERS.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "301507c8f9b9",
+      "ts_utc": "2026-10-20T14:17:19+00:00"
+    },
+    {
+      "gate": "gate0",
+      "check": "source_opendengue",
+      "rule": "GATE0-SOURCE",
+      "action": "PASS",
+      "table": "opendengue",
+      "rows_affected": 0,
+      "explanation": "OpenDengue v1.3 (Figshare): ACCEPT - no robots.txt (HTTP 404) - nothing disallowed; licence recorded; HTTP 200.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "d3593fb63b75",
+      "ts_utc": "2026-10-20T14:17:19+00:00"
+    },
+    {
+      "gate": "gate0",
+      "check": "source_hdx",
+      "rule": "GATE0-SOURCE",
+      "action": "PASS",
+      "table": "hdx",
+      "rows_affected": 0,
+      "explanation": "HDX: OCHA boundaries, census population, OPHI MPI: ACCEPT - robots.txt allows this path; licence recorded; HTTP 200.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "693ceda0c235",
+      "ts_utc": "2026-10-20T14:17:19+00:00"
+    },
+    {
+      "gate": "gate0",
+      "check": "source_nasa_power",
+      "rule": "GATE0-SOURCE",
+      "action": "PASS",
+      "table": "nasa_power",
+      "rows_affected": 0,
+      "explanation": "NASA POWER daily point API (candidate): NOT_USED - robots.txt disallows /api/temporal/daily/point (crawler rule on the API host); programmatic access is granted by the API terms https://power.larc.nasa.gov/docs/services/api/ and the source is on the organisers' list - CONFIRM WITH ORGANISERS. Not fetched.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "198024237ed4",
+      "ts_utc": "2026-10-20T14:17:19+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "ligature_place",
+      "rule": "IDSR-R0",
+      "action": "FIX",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 420,
+      "explanation": "420 'place' values contained PDF ligature codes; replaced (cid:425)->'tt' and (cid:415)->'ti' (checked on the PDF page, e.g. Abbo(cid:425)abad = Abbottabad).",
+      "sample": [
+        "Ma(cid:415)ari",
+        "Tha(cid:425)a",
+        "Dera Bug(cid:415)"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "2869e4a022bc",
+      "ts_utc": "2026-10-20T14:17:43+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "type_cast",
+      "rule": "IDSR-R1",
+      "action": "FIX",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 16731,
+      "explanation": "16731 counts used thousands separators (e.g. '5,133'). Removed the separator and cast to integer. Lossless; the original string stays in value_raw.",
+      "sample": [
+        "1,001",
+        "2,135",
+        "3,835"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "b83369eb9e75",
+      "ts_utc": "2026-10-20T14:17:43+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "not_reported",
+      "rule": "IDSR-R2",
+      "action": "FLAG",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 8992,
+      "explanation": "8992 cells say 'NR' (area did not report that week), mostly {'Balochistan': 5217, 'Punjab': 3108, 'Azad Kashmir': 396, 'Khyber Pakhtunkhwa': 264, 'UNKNOWN:Baluchistan': 7}. Kept as missing, NOT zero - a zero would tell the model that no one fell ill.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "1bc41e52ef8b",
+      "ts_utc": "2026-10-20T14:17:43+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "unparseable_value",
+      "rule": "IDSR-R3",
+      "action": "FLAG",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 8,
+      "explanation": "8 cells are neither a count nor 'NR'; kept as missing for review.",
+      "sample": [
+        "8 90",
+        "1,11 1",
+        "13 3",
+        "1 2",
+        "9 51"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "d0f6641ccc1e",
+      "ts_utc": "2026-10-20T14:17:43+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "week_label",
+      "rule": "IDSR-R4",
+      "action": "FIX",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 2242,
+      "explanation": "2 bulletins print a different week/year inside the PDF than in the NIH listing title. Used the week printed in the PDF.",
+      "sample": [
+        "2024_W25.pdf",
+        "2025_W01.pdf"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "a959a9d79d59",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "province_unknown",
+      "rule": "IDSR-R5",
+      "action": "FLAG",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 330,
+      "explanation": "Table title did not name a known province; rows excluded from gold.",
+      "sample": [
+        "UNKNOWN:Baluchistan"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "7aa37cd40b68",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "duplicates",
+      "rule": "IDSR-R6",
+      "action": "FIX",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 1651,
+      "explanation": "1651 rows repeat a (week, province, place, disease) key; kept the first occurrence. 1380 of them had a different count - those are listed in sample.",
+      "sample": [
+        {
+          "year": 2024,
+          "week": 24,
+          "province": "Azad Kashmir",
+          "place": "Azad Kashmir",
+          "disease": "ad_non_cholera",
+          "table": "national",
+          "cases": 1704,
+          "cases_kept": 1881
+        },
+        {
+          "year": 2024,
+          "week": 24,
+          "province": "Balochistan",
+          "place": "Balochistan",
+          "disease": "ad_non_cholera",
+          "table": "national",
+          "cases": 5499,
+          "cases_kept": 5089
+        },
+        {
+          "year": 2024,
+          "week": 24,
+          "province": "Gilgit-Baltistan",
+          "place": "Gilgit-Baltistan",
+          "disease": "ad_non_cholera",
+          "table": "national",
+          "cases": 1187,
+          "cases_kept": 1407
+        },
+        {
+          "year": 2024,
+          "week": 24,
+          "province": "Islamabad",
+          "place": "Islamabad",
+          "disease": "ad_non_cholera",
+          "table": "national",
+          "cases": 208,
+          "cases_kept": 471
+        },
+        {
+          "year": 2024,
+          "week": 24,
+          "province": "Khyber Pakhtunkhwa",
+          "place": "Khyber Pakhtunkhwa",
+          "disease": "ad_non_cholera",
+          "table": "national",
+          "cases": 21049,
+          "cases_kept": 25587
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "ee6e29881103",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "parse_column_mismatch",
+      "rule": "IDSR-R7",
+      "action": "FLAG",
+      "table": "raw.nih_idsr",
+      "rows_affected": 620,
+      "explanation": "620 parser findings of type 'column_mismatch'. Rows skipped because header and value counts disagree; no guessing.",
+      "sample": [
+        "national/Non-Cholera: 7 values vs 12 headers",
+        "national/ILI: 7 values vs 12 headers",
+        "national/Malaria: 7 values vs 12 headers",
+        "national/ALRI <5 years: 7 values vs 12 headers",
+        "national/SARI: 7 values vs 12 headers"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "d893433a6bef",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "parse_no_supported_table",
+      "rule": "IDSR-R7",
+      "action": "FLAG",
+      "table": "raw.nih_idsr",
+      "rows_affected": 24,
+      "explanation": "24 parser findings of type 'no_supported_table'. Whole bulletins skipped: their layout embeds tables in text (2021-22).",
+      "sample": [
+        "layout not recognised (older 2021-22 bulletins embed tables in text)",
+        "layout not recognised (older 2021-22 bulletins embed tables in text)",
+        "layout not recognised (older 2021-22 bulletins embed tables in text)",
+        "layout not recognised (older 2021-22 bulletins embed tables in text)",
+        "layout not recognised (older 2021-22 bulletins embed tables in text)"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "aff094e2ef0d",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "schema_idsr",
+      "rule": "IDSR-SCHEMA",
+      "action": "PASS",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 0,
+      "explanation": "pandera schema passed on 203895 rows.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "313b10ea4ddc",
+      "ts_utc": "2026-10-20T14:17:44+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "district_unmatched",
+      "rule": "GEO-M1",
+      "action": "FLAG",
+      "table": "cleaned.district_match",
+      "rows_affected": 40,
+      "explanation": "40 district names from the bulletins could not be matched to an OCHA pcode with score >= 86. They stay in cleaned but are excluded from gold until an alias is reviewed and added to configs/district_aliases.csv.",
+      "sample": [
+        {
+          "province": "Sindh",
+          "place": "Karachi Keamari",
+          "match_method": "unmatched(best=Malir Karachi)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "SURAB",
+          "match_method": "unmatched(best=Nasirabad)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Hub",
+          "match_method": "unmatched(best=Zhob)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Usta Muhammad",
+          "match_method": "unmatched(best=Chaman)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Surab",
+          "match_method": "unmatched(best=Nasirabad)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Dera Bugti Gwadar",
+          "match_method": "unmatched(best=Dera Bugti)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Nushki Panjgur Pishin",
+          "match_method": "unmatched(best=Panjgur)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Washuk Zhob Ziarat",
+          "match_method": "unmatched(best=Washuk)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Kohlu Lasbella",
+          "match_method": "unmatched(best=Lasbela)"
+        },
+        {
+          "province": "Balochistan",
+          "place": "Mastung MusaKhel",
+          "match_method": "unmatched(best=Musakhel)"
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "732ff85c73f8",
+      "ts_utc": "2026-10-20T14:17:46+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "district_fuzzy",
+      "rule": "GEO-M2",
+      "action": "FIX",
+      "table": "cleaned.district_match",
+      "rows_affected": 3,
+      "explanation": "3 spellings matched by fuzzy score >= 86 within the same province.",
+      "sample": [
+        {
+          "place": "Naushero Feroze",
+          "adm2_name": "Naushahro Feroze",
+          "match_score": 90.32258064516128
+        },
+        {
+          "place": "Abbottaba",
+          "adm2_name": "Abbottabad",
+          "match_score": 94.73684210526316
+        },
+        {
+          "place": "uetta",
+          "adm2_name": "Quetta",
+          "match_score": 90.9090909090909
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "4b316aa660ac",
+      "ts_utc": "2026-10-20T14:17:46+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "quarantine",
+      "rule": "QUARANTINE",
+      "action": "FLAG",
+      "table": "quarantine.idsr_rows",
+      "rows_affected": 8149,
+      "explanation": "8149 rows could not enter gold and were moved to quarantine.idsr_rows with their reason (never dropped silently): {'GEO-M1 district name not matched to an OCHA pcode': 7819, 'IDSR-R5 province not readable': 330}.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "aaca7b8773d9",
+      "ts_utc": "2026-10-20T14:17:47+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "population_schema",
+      "rule": "POP-P1",
+      "action": "FLAG",
+      "table": "cleaned.districts",
+      "rows_affected": 0,
+      "explanation": "Population sheet has no recognisable pcode/total column; per-100k rates disabled.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "28e7ce90ede6",
+      "ts_utc": "2026-10-20T14:17:49+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "unit_temperature",
+      "rule": "WX-W1",
+      "action": "PASS",
+      "table": "cleaned.weather_hourly",
+      "rows_affected": 0,
+      "explanation": "All temperatures declared in deg C by the API (hourly_units) and none above 200.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "1799e48b24ad",
+      "ts_utc": "2026-10-20T14:17:53+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "schema_weather",
+      "rule": "WX-SCHEMA",
+      "action": "FLAG",
+      "table": "cleaned.weather_hourly",
+      "rows_affected": 0,
+      "explanation": "0 hourly rows outside physical ranges; kept and marked is_suspect.",
+      "sample": [
+        {
+          "column": "rh_pct",
+          "failure_case": "int64",
+          "index": NaN,
+          "schema_context": "Column",
+          "check": "dtype('float64')",
+          "check_number": NaN
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "81e27947ffb2",
+      "ts_utc": "2026-10-20T14:18:00+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "hourly_gaps_long",
+      "rule": "WX-W3",
+      "action": "FLAG",
+      "table": "cleaned.weather_hourly",
+      "rows_affected": 1170840,
+      "explanation": "1170840 hourly values are in gaps longer than 3 hours; left missing, weekly aggregates report how many hours they are based on.",
+      "sample": [
+        {
+          "district_id": "PK201",
+          "missing_hours": 15600
+        },
+        {
+          "district_id": "PK202",
+          "missing_hours": 15600
+        },
+        {
+          "district_id": "PK203",
+          "missing_hours": 15600
+        },
+        {
+          "district_id": "PK204",
+          "missing_hours": 15600
+        },
+        {
+          "district_id": "PK205",
+          "missing_hours": 15600
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "9c882e894453",
+      "ts_utc": "2026-10-20T14:18:08+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "units_summed_to_district",
+      "rule": "GOLD-G0",
+      "action": "FIX",
+      "table": "gold.district_week",
+      "rows_affected": 433,
+      "explanation": "433 district-weeks combine several bulletin units that are one OCHA district (reviewed in configs/district_aliases.csv). Counts summed; `place` lists the parts.",
+      "sample": [
+        {
+          "place": "Bannu+SD Bannu",
+          "district_id": "PK503"
+        },
+        {
+          "place": "D.I. Khan+SD DI Khan",
+          "district_id": "PK509"
+        },
+        {
+          "place": "L & C Kurram+Upper Kurram",
+          "district_id": "PK518"
+        },
+        {
+          "place": "Lakki Marwat+SD Lakki",
+          "district_id": "PK519"
+        },
+        {
+          "place": "Peshawar+SD Peshawar",
+          "district_id": "PK528"
+        },
+        {
+          "place": "SWA+SWU+South Waziristan (Lower)",
+          "district_id": "PK530"
+        },
+        {
+          "place": "SWA+South Waziristan (Lower)",
+          "district_id": "PK530"
+        },
+        {
+          "place": "SWU+South Waziristan (Lower)",
+          "district_id": "PK530"
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "89721f19bd95",
+      "ts_utc": "2026-10-20T14:18:25+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "outlier_robust_z",
+      "rule": "IDSR-R8",
+      "action": "FLAG",
+      "table": "cleaned.idsr_cases",
+      "rows_affected": 8,
+      "explanation": "8 district-weeks are > 6 robust SD from that district's usual level. Could be a real outbreak or a typing error in the bulletin, so values are kept and marked is_outlier for the user to check against the PDF page.",
+      "sample": [
+        {
+          "district": "Sanghar",
+          "disease": "malaria",
+          "week_start": "2023-04-17",
+          "cases": "523"
+        },
+        {
+          "district": "Jamshoro",
+          "disease": "malaria",
+          "week_start": "2023-05-29",
+          "cases": "152"
+        },
+        {
+          "district": "Jamshoro",
+          "disease": "malaria",
+          "week_start": "2023-07-17",
+          "cases": "117"
+        },
+        {
+          "district": "Jamshoro",
+          "disease": "malaria",
+          "week_start": "2023-06-19",
+          "cases": "112"
+        },
+        {
+          "district": "Jamshoro",
+          "disease": "malaria",
+          "week_start": "2023-07-10",
+          "cases": "108"
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "bde78076048c",
+      "ts_utc": "2026-10-20T14:18:26+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "schema_gold",
+      "rule": "GOLD-SCHEMA",
+      "action": "PASS",
+      "table": "gold.district_week",
+      "rows_affected": 0,
+      "explanation": "Gold contract holds for 34920 rows.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "24fdb04960ae",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "top10_not_listed",
+      "rule": "GOLD-G1",
+      "action": "FLAG",
+      "table": "gold.district_week",
+      "rows_affected": 13618,
+      "explanation": "13618 district-weeks have no value because the bulletin only prints each province's most frequent diseases that week ({'dengue': 13562, 'malaria': 56}). Kept missing: 'not in the top list' does not mean zero cases.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "eb2acadde7cc",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "missing_bulletin_week",
+      "rule": "GOLD-G2",
+      "action": "FLAG",
+      "table": "gold.district_week",
+      "rows_affected": 2910,
+      "explanation": "28 weeks have no usable bulletin (not published, or 2021-22 layout). Left missing; never interpolated for the target.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "c274173a2520",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "single_week_gap",
+      "rule": "GOLD-G3",
+      "action": "FILL",
+      "table": "gold.district_week",
+      "rows_affected": 1292,
+      "explanation": "1292 single-week gaps were linearly interpolated ONLY in cases_for_features (used to build lag features). The target column `cases` stays missing and those weeks are never scored.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "d4dd50167f64",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "district_sum_vs_total",
+      "rule": "GOLD-G4",
+      "action": "FLAG",
+      "table": "gold.district_week",
+      "rows_affected": 174,
+      "explanation": "Checked 4828 province-week totals against the sum of their districts; 174 differ by more than 2% (often a district missing from the table).",
+      "sample": [
+        {
+          "province": "Sindh",
+          "week_start": "2024-03-25",
+          "disease": "malaria",
+          "reported_total": "4118",
+          "sum_districts": "41187",
+          "abs_diff": "37069",
+          "rel_diff": "9.001699854298202"
+        },
+        {
+          "province": "Balochistan",
+          "week_start": "2023-10-09",
+          "disease": "malaria",
+          "reported_total": "182",
+          "sum_districts": "19254",
+          "abs_diff": "19072",
+          "rel_diff": "104.79120879120879"
+        },
+        {
+          "province": "Khyber Pakhtunkhwa",
+          "week_start": "2023-10-09",
+          "disease": "ad_non_cholera",
+          "reported_total": "212",
+          "sum_districts": "18779",
+          "abs_diff": "18567",
+          "rel_diff": "87.58018867924528"
+        },
+        {
+          "province": "Khyber Pakhtunkhwa",
+          "week_start": "2025-03-24",
+          "disease": "ad_non_cholera",
+          "reported_total": "1910",
+          "sum_districts": "19098",
+          "abs_diff": "17188",
+          "rel_diff": "8.998952879581152"
+        },
+        {
+          "province": "Balochistan",
+          "week_start": "2023-10-09",
+          "disease": "ili",
+          "reported_total": "97",
+          "sum_districts": "14866",
+          "abs_diff": "14769",
+          "rel_diff": "152.2577319587629"
+        }
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "bcc64a8c3977",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "freshness",
+      "rule": "FRESH-nih_idsr",
+      "action": "FLAG",
+      "table": "nih_idsr",
+      "rows_affected": 0,
+      "explanation": "Source nih_idsr is late: newest data 2026-09-28 is 542 h old (allowed 336 h). Dashboard shows it as stale.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "ca55aefc8d5e",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    },
+    {
+      "gate": "gate2",
+      "check": "drift_log_malaria_cases",
+      "rule": "DRIFT-PSI",
+      "action": "PASS",
+      "table": "gold.district_week",
+      "rows_affected": 0,
+      "explanation": "PSI of log_malaria_cases (last 8 weeks vs training period) = 0.031. <= 0.25: no meaningful drift.",
+      "sample": [],
+      "risk": "low",
+      "status": "info",
+      "decision_id": "1a785f03dbb7",
+      "ts_utc": "2026-10-20T14:18:28+00:00"
+    }
+  ]
+}

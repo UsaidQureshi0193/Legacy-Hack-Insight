@@ -1,0 +1,66 @@
+{
+  "checked_utc": "2026-10-20T14:13:43+00:00",
+  "checked_epoch": 1792505623.856718,
+  "sources": [
+    {
+      "source": "nih_idsr",
+      "name": "NIH Pakistan IDSR weekly bulletins",
+      "url": "https://www.nih.org.pk/phb/weekly-bulletin",
+      "licence": "Public government report, NIH Islamabad (robots.txt allows all; attribution given)",
+      "role": "target (district cases)",
+      "robots": true,
+      "alive": true,
+      "decision": "ACCEPT",
+      "why": "robots.txt allows this path; licence recorded; HTTP 200"
+    },
+    {
+      "source": "open_meteo",
+      "name": "Open-Meteo historical + forecast weather",
+      "url": "https://archive-api.open-meteo.com/v1/archive",
+      "licence": "CC BY 4.0, Open-Meteo.com (free tier: non-commercial use)",
+      "role": "weather features",
+      "api_terms": "https://open-meteo.com/en/terms",
+      "organiser_listed": true,
+      "robots": false,
+      "alive": true,
+      "decision": "ACCEPT_API",
+      "why": "robots.txt disallows /v1/archive (crawler rule on the API host); programmatic access is granted by the API terms https://open-meteo.com/en/terms and the source is on the organisers' list - CONFIRM WITH ORGANISERS"
+    },
+    {
+      "source": "opendengue",
+      "name": "OpenDengue v1.3 (Figshare)",
+      "url": "https://ndownloader.figshare.com/files/54854156",
+      "licence": "CC BY 4.0, OpenDengue (Clarke et al. 2024, doi:10.6084/m9.figshare.24259573)",
+      "role": "benchmark / local validation",
+      "robots": true,
+      "alive": true,
+      "decision": "ACCEPT",
+      "why": "no robots.txt (HTTP 404) - nothing disallowed; licence recorded; HTTP 200"
+    },
+    {
+      "source": "hdx",
+      "name": "HDX: OCHA boundaries, census population, OPHI MPI",
+      "url": "https://data.humdata.org/dataset/6b9b9c1c-e43c-45e2-a411-621dc1f5a641/resource/194b2580-bbd8-4a65-a72c-7afd879e1ad3/download/pak_mpi.csv",
+      "licence": "CC0, Oxford Poverty & Human Development Initiative via HDX",
+      "role": "district ids, population, poverty",
+      "robots": true,
+      "alive": true,
+      "decision": "ACCEPT",
+      "why": "robots.txt allows this path; licence recorded; HTTP 200"
+    },
+    {
+      "source": "nasa_power",
+      "name": "NASA POWER daily point API (candidate)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "licence": "NASA open data",
+      "role": "alternative weather history (evaluated, not needed)",
+      "api_terms": "https://power.larc.nasa.gov/docs/services/api/",
+      "organiser_listed": true,
+      "needed": false,
+      "robots": false,
+      "alive": false,
+      "decision": "NOT_USED",
+      "why": "robots.txt disallows /api/temporal/daily/point (crawler rule on the API host); programmatic access is granted by the API terms https://power.larc.nasa.gov/docs/services/api/ and the source is on the organisers' list - CONFIRM WITH ORGANISERS"
+    }
+  ]
+}

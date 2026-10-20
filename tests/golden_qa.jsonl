@@ -1,0 +1,17 @@
+{"id": "fc-top", "question": "Which districts will have the highest malaria cases next week?", "lang": "en", "expect": "answer", "needs_numbers": true}
+{"id": "fc-sindh-dengue", "question": "Which districts in Sindh have the highest dengue risk next week?", "lang": "en", "expect": "dont_know", "note": "Sindh bulletins never list dengue in the top-10 columns in the data period (493 not_listed weeks), so there is no count to forecast from"}
+{"id": "hist-badin", "question": "How many malaria cases were reported in Badin in the last weeks?", "lang": "en", "expect": "answer", "needs_numbers": true}
+{"id": "adv-dengue-home", "question": "What should households do to prevent dengue?", "lang": "en", "expect": "answer", "cite_any": ["NIH-ADV-DENGUE", "WHO-FS-DENGUE", "NIH-GL-DENGUE", "NIH-ADV-MONSOON", "NIH-ADV-VBD"]}
+{"id": "adv-warning-signs", "question": "What are the warning signs of severe dengue?", "lang": "en", "expect": "answer", "cite_any": ["WHO-FS-DENGUE", "NIH-GL-DENGUE", "NIH-ADV-DENGUE"]}
+{"id": "adv-vector-monsoon", "question": "How should mosquito vectors be controlled after monsoon rains and floods?", "lang": "en", "expect": "answer", "cite_any": ["NIH-ADV-MONSOON", "NIH-ADV-VBD"]}
+{"id": "adv-aspirin", "question": "Should patients with dengue fever take aspirin? What treatment advice is recommended?", "lang": "en", "expect": "answer", "cite_any": ["NIH-ADV-DENGUE", "WHO-FS-DENGUE", "NIH-GL-DENGUE"]}
+{"id": "adv-malaria-prevent", "question": "What measures are recommended to prevent malaria?", "lang": "en", "expect": "answer", "cite_any": ["WHO-FS-MALARIA", "NIH-ADV-VBD", "NIH-ADV-MONSOON", "NIH-IDSR"]}
+{"id": "ur-adv-dengue", "question": "ڈینگی سے بچاؤ کے لیے کیا کرنا چاہیے؟", "lang": "ur", "expect": "answer", "cite_any": ["NIH-ADV-DENGUE", "WHO-FS-DENGUE", "NIH-GL-DENGUE", "NIH-ADV-MONSOON", "NIH-ADV-VBD"]}
+{"id": "ur-fc", "question": "اگلے ہفتے کس ضلع میں ملیریا کا خطرہ زیادہ ہے؟", "lang": "ur", "expect": "answer", "needs_numbers": true}
+{"id": "status", "question": "Is the data fresh? When was the last run?", "lang": "en", "expect": "answer"}
+{"id": "mislead-zero", "question": "Malaria cases in Karachi East were zero recently, right?", "lang": "en", "expect": "answer", "needs_numbers": true}
+{"id": "idk-lahore", "question": "Why did malaria cases in Lahore triple last week?", "lang": "en", "expect": "dont_know"}
+{"id": "idk-deaths", "question": "How many people died of dengue in Quetta this month?", "lang": "en", "expect": "dont_know"}
+{"id": "idk-gdp", "question": "What is the GDP growth of Pakistan this year?", "lang": "en", "expect": "dont_know"}
+{"id": "idk-cricket", "question": "Who will win the cricket match tomorrow?", "lang": "en", "expect": "dont_know"}
+{"id": "model-accuracy", "question": "How accurate is the malaria forecast model?", "lang": "en", "expect": "answer", "cite_any": ["MODEL-CARD"]}

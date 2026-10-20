@@ -1,0 +1,80 @@
+[
+  {
+    "change": "Add weather features (rain, humidity, temperature, lags 0-3 weeks)",
+    "before": {
+      "val_mae": 128.33,
+      "val_mae_baseline": 127.33,
+      "seconds": 4.5,
+      "rss_mb_delta": 20.0,
+      "n_features": 13
+    },
+    "after": {
+      "val_mae": 127.42,
+      "val_mae_baseline": 127.33,
+      "seconds": 7.2,
+      "rss_mb_delta": 43.4,
+      "n_features": 33
+    },
+    "kept": true,
+    "note": "kept if validation MAE does not get worse"
+  },
+  {
+    "change": "Tuning grid: 6 settings -> 1 setting (num_leaves=7)",
+    "before": {
+      "val_mae": 127.42,
+      "val_mae_baseline": 127.33,
+      "seconds": 7.2,
+      "rss_mb_delta": 43.4,
+      "n_features": 33
+    },
+    "after": {
+      "val_mae": 129.51,
+      "val_mae_baseline": 127.33,
+      "seconds": 4.7,
+      "rss_mb_delta": 23.4,
+      "n_features": 33
+    },
+    "kept": false,
+    "note": "kept only if accuracy within 1% while saving time"
+  },
+  {
+    "change": "PDF parsing: process pool instead of one process",
+    "result": {
+      "bulletins": 12,
+      "seq_seconds": 85.0,
+      "parallel_seconds": 39.2,
+      "workers": 7,
+      "same_rows": true,
+      "rows": 15170
+    },
+    "kept": true,
+    "note": "identical rows, faster wall-clock"
+  },
+  {
+    "change": "Cache parsed PDFs by SHA-256 + skip past-year weather files with a valid hash (incremental run)",
+    "result": {
+      "last_run_mode": "incremental",
+      "last_run_seconds": 52.1,
+      "steps": {
+        "verify_raw": null,
+        "fetch": 1.4,
+        "extract": 2.3,
+        "weather": 0.1,
+        "cleaned": 27.1,
+        "gold": 3.4
+      }
+    },
+    "kept": true,
+    "note": "compare a `make data` (full) run with a `make update` (incremental) run"
+  },
+  {
+    "change": "Cache sentence embeddings by chunk hash",
+    "result": {
+      "chunks": 113,
+      "cold_seconds": 41.9,
+      "warm_seconds": 9.0
+    },
+    "kept": true,
+    "note": "re-index after a new bulletin only embeds new chunks"
+  }
+]

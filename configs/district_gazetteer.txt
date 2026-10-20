@@ -1,0 +1,201 @@
+# District gazetteer used by the IDSR parser to re-join district names that a PDF splits over rows.
+# Built from (1) OCHA ADM2 names (HDX cod-ab-pak) and (2) district spellings printed in the
+# 2023-W40, 2024-W18 and 2026-W39 bulletins, whose tables were checked by eye against the PDFs.
+# One name per line. Reviewed list: edit by hand only after checking a bulletin page.
+Abbottabad
+Astore
+Attock
+Awaran
+Badin
+Bagh
+Bahawalnagar
+Bahawalpur
+Bajaur
+Bannu
+Barkhan
+Bashore
+Batagram
+Battagram
+Bhakkar
+Bhimber
+Buner
+Central Karachi
+Chagai
+Chakwal
+Chaman
+Charsadda
+Chiniot
+Chitral Lower
+Chitral Upper
+D. I. Khan
+D.I. Khan
+DBS
+Dadu
+Darel
+Dera Bugti
+Dera Ghazi Khan
+Diamir
+Dir Lower
+Dir Upper
+Duki
+East Karachi
+Faisalabad
+Ghanche
+Ghizer
+Ghotki
+Gilgit
+Gujranwala
+Gujrat
+Gupis-Yasin
+Gwadar
+Hafizabad
+Hangu
+Haripur
+Harnai
+Haveli
+Hub
+Hunza
+Hyderabad
+Islamabad
+Jacobabad
+Jaffarabad
+Jamshoro
+Jhal Magsi
+Jhang
+Jhelum
+Jhelum Valley
+Kachhi
+Kachhi (Bolan)
+Kalat
+Kambar Shahdad Kot
+Kamber
+Karachi Central
+Karachi East
+Karachi Keamari
+Karachi Korangi
+Karachi Malir
+Karachi South
+Karachi West
+Karak
+Kashmore
+Kasur
+Kech
+Kech (Turbat)
+Khairpur
+Khanewal
+Kharan
+Kharmang
+Khushab
+Khuzdar
+Khyber
+Killa Abdullah
+Killa Saifullah
+Kohat
+Kohistan Lower
+Kohistan Upper
+Kohlu
+Kolai Palas
+Kolai Palas Kohistan
+Korangi Karachi
+Kotli
+Kurram
+L & C Kurram
+Lahore
+Lakki Marwat
+Larkana
+Lasbela
+Lasbella
+Lehri
+Leiah
+Lodhran
+Loralai
+Lower Dir
+Malakand
+Malir Karachi
+Mandi Bahauddin
+Mansehra
+Mardan
+Mastung
+Matiari
+Mianwali
+Mirpur
+Mirpur Khas
+Mirpurkhas
+Mohmand
+Multan
+Musa Khail
+MusaKhel
+Musakhel
+Muzaffarabad
+Muzaffargarh
+Nagar
+Nankana Sahib
+Narowal
+Naseerabad
+Nasirabad
+Naushahro Feroze
+Naushero Feroze
+Neelum
+North Waziristan
+Nowshera
+Nushki
+Okara
+Orakzai
+Pakpattan
+Panjgur
+Peshawar
+Pishin
+Poonch
+Quetta
+Rahim Yar Khan
+Rajanpur
+Rawalpindi
+Rondu
+SD Peshawar
+SD Tank
+SWA
+SWU
+Sahiwal
+Sanghar
+Sargodha
+Shaheed Benazir Abad
+Shaheed Benazirabad
+Shaheed Sikandarabad
+Shangla
+Sheikhupura
+Sherani
+Shigar
+Shikarpur
+Sialkot
+Sibi
+Skardu
+Sohbat pur
+Sohbatpur
+South Karachi
+South Waziristan
+South Waziristan (Lower)
+Sudhnoti
+Sujawal
+Sukkur
+Surab
+Swabi
+Swat
+Tando Allahyar
+Tando Muhammad Khan
+Tangir
+Tank
+Tharparkar
+Thatta
+Toba Tek Singh
+Tor Ghar
+Tump
+Umer Kot
+Umerkot
+Upper Dir
+Upper Kurram
+Usta Muhammad
+Vehari
+Washuk
+West Karachi
+Zhob
+Ziarat

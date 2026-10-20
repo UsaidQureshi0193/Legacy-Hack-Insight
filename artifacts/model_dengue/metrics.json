@@ -1,0 +1,226 @@
+{
+  "disease": "dengue",
+  "baseline": "last value (next week = this week)",
+  "split": {
+    "train_target_weeks": [
+      "2023-06-26",
+      "2024-05-27"
+    ],
+    "val_target_weeks": [
+      "2025-09-15",
+      "2025-09-29"
+    ],
+    "test_target_weeks": [
+      "2025-10-06",
+      "2026-09-21"
+    ],
+    "n_train": 355,
+    "n_val": 105,
+    "n_test": 576
+  },
+  "validation": {
+    "mae_baseline": 14.314285714285715,
+    "mae_model": 15.399679247045787,
+    "params": {
+      "num_leaves": 7,
+      "min_child_samples": 20,
+      "learning_rate": 0.05,
+      "feature_fraction": 0.8,
+      "bagging_fraction": 0.8,
+      "bagging_freq": 1,
+      "lambda_l2": 1.0
+    },
+    "best_iter": 682
+  },
+  "test": {
+    "n": 576,
+    "weeks": 17,
+    "districts": 85,
+    "mae_baseline": 9.823784722222221,
+    "mae_model": 13.757981862675708,
+    "rmse_baseline": 31.545278580073507,
+    "rmse_model": 44.46352080635953,
+    "interval_coverage_80": 0.7951388888888888,
+    "mean_interval_width": 29.340226213905527,
+    "skill_vs_baseline": -0.4004767257932682,
+    "skill_mean": -0.4069249495559204,
+    "skill_ci95": [
+      -0.5905906848444694,
+      -0.24327822641228597
+    ]
+  },
+  "groups": {
+    "province": [
+      {
+        "group": "province",
+        "value": "Sindh",
+        "n": 226,
+        "mae_baseline": 8.97,
+        "mae_model": 16.51,
+        "skill": -0.841,
+        "interval_coverage": 0.774,
+        "mean_target": 25.6
+      },
+      {
+        "group": "province",
+        "value": "Balochistan",
+        "n": 108,
+        "mae_baseline": 6.86,
+        "mae_model": 9.31,
+        "skill": -0.358,
+        "interval_coverage": 0.926,
+        "mean_target": 11.3
+      },
+      {
+        "group": "province",
+        "value": "Khyber Pakhtunkhwa",
+        "n": 242,
+        "mae_baseline": 11.95,
+        "mae_model": 13.17,
+        "skill": -0.102,
+        "interval_coverage": 0.756,
+        "mean_target": 19.2
+      }
+    ],
+    "poverty_tier": [
+      {
+        "group": "poverty_tier",
+        "value": "high",
+        "n": 576,
+        "mae_baseline": 9.82,
+        "mae_model": 13.76,
+        "skill": -0.4,
+        "interval_coverage": 0.795,
+        "mean_target": 20.2
+      }
+    ],
+    "season": [
+      {
+        "group": "season",
+        "value": "post_monsoon",
+        "n": 335,
+        "mae_baseline": 10.34,
+        "mae_model": 15.28,
+        "skill": -0.478,
+        "interval_coverage": 0.77,
+        "mean_target": 23.1
+      },
+      {
+        "group": "season",
+        "value": "monsoon",
+        "n": 140,
+        "mae_baseline": 11.08,
+        "mae_model": 15.91,
+        "skill": -0.436,
+        "interval_coverage": 0.757,
+        "mean_target": 21.4
+      },
+      {
+        "group": "season",
+        "value": "winter",
+        "n": 28,
+        "mae_baseline": 6.36,
+        "mae_model": 6.76,
+        "skill": -0.063,
+        "interval_coverage": 0.893,
+        "mean_target": 14.7
+      },
+      {
+        "group": "season",
+        "value": "pre_monsoon",
+        "n": 73,
+        "mae_baseline": 6.39,
+        "mae_model": 5.33,
+        "skill": 0.166,
+        "interval_coverage": 0.945,
+        "mean_target": 7.2
+      }
+    ],
+    "size_band": [
+      {
+        "group": "size_band",
+        "value": "high (top 10%)",
+        "n": 198,
+        "mae_baseline": 26.26,
+        "mae_model": 37.51,
+        "skill": -0.428,
+        "interval_coverage": 0.692,
+        "mean_target": 56.2
+      },
+      {
+        "group": "size_band",
+        "value": "low (<= median)",
+        "n": 285,
+        "mae_baseline": 0.49,
+        "mae_model": 0.56,
+        "skill": -0.15,
+        "interval_coverage": 0.937,
+        "mean_target": 0.5
+      },
+      {
+        "group": "size_band",
+        "value": "medium",
+        "n": 93,
+        "mae_baseline": 3.44,
+        "mae_model": 3.64,
+        "skill": -0.058,
+        "interval_coverage": 0.581,
+        "mean_target": 4.1
+      }
+    ],
+    "district_worst10": []
+  },
+  "feature_importance_top10": {
+    "roll4_log": 7721.4,
+    "lag0_log": 1657.9,
+    "roll8_log": 1019.5,
+    "woy_sin": 436.9,
+    "lag1_log": 400.7,
+    "rh_mean_pct_lag1": 384.6,
+    "rh_mean_pct_roll4": 378.2,
+    "rh_mean_pct_lag3": 368.5,
+    "rh_mean_pct_lag0": 351.9,
+    "diff1_log": 271.3
+  },
+  "features": [
+    "lag0_log",
+    "lag1_log",
+    "lag2_log",
+    "lag3_log",
+    "roll4_log",
+    "roll8_log",
+    "diff1_log",
+    "same_week_last_year_log",
+    "precip_sum_mm_lag0",
+    "precip_sum_mm_lag1",
+    "precip_sum_mm_lag2",
+    "precip_sum_mm_lag3",
+    "precip_sum_mm_roll4",
+    "temp_mean_c_lag0",
+    "temp_mean_c_lag1",
+    "temp_mean_c_lag2",
+    "temp_mean_c_lag3",
+    "temp_mean_c_roll4",
+    "rh_mean_pct_lag0",
+    "rh_mean_pct_lag1",
+    "rh_mean_pct_lag2",
+    "rh_mean_pct_lag3",
+    "rh_mean_pct_roll4",
+    "rain_hours_lag0",
+    "rain_hours_lag1",
+    "rain_hours_lag2",
+    "rain_hours_lag3",
+    "rain_hours_roll4",
+    "woy_sin",
+    "woy_cos",
+    "province_code",
+    "mpi",
+    "log_pop"
+  ],
+  "use_weather": true,
+  "use_lags": true,
+  "train_seconds": 4.6,
+  "peak_rss_mb_delta": 5.6,
+  "weather_rows_at_train": 23480,
+  "served_method": "baseline (model did not beat baseline on validation)"
+}

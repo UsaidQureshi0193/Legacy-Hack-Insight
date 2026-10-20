@@ -1,0 +1,159 @@
+{
+  "last_run": {
+    "run_id": "20261020T141626-2b4f26",
+    "status": "success",
+    "started_utc": "2026-10-20T14:16:26.440929+00:00",
+    "finished_utc": "2026-10-20T14:18:31.063480+00:00",
+    "duration_s": 124.6,
+    "mode": "incremental",
+    "steps": {
+      "verify_raw": {
+        "problems": []
+      },
+      "gate0": {
+        "nih_idsr": "ACCEPT",
+        "open_meteo": "ACCEPT_API",
+        "opendengue": "ACCEPT",
+        "hdx": "ACCEPT",
+        "nasa_power": "NOT_USED"
+      },
+      "fetch": {
+        "context_files": 0,
+        "rag_docs": 0,
+        "new_bulletins": 0,
+        "seconds": 11.7
+      },
+      "extract": {
+        "rows": 205876,
+        "seconds": 5.4
+      },
+      "weather": {
+        "archive": {
+          "fetched": 0,
+          "deferred_approx": 40
+        },
+        "forecast": {
+          "fetched": 0
+        },
+        "seconds": 0.7
+      },
+      "cleaned": {
+        "idsr_rows": 203895,
+        "weather_rows": 2916480,
+        "districts_matched": 119,
+        "districts_unmatched": 40,
+        "seconds": 63.6
+      },
+      "gold": {
+        "gold_rows": 34920,
+        "weeks": 180,
+        "districts": 97,
+        "psi_primary": 0.031098364087485994,
+        "gate2_pass": true,
+        "reported_rows": 15876,
+        "seconds": 7.1
+      },
+      "local_validation": {
+        "months": 20,
+        "exact_match_months": 15,
+        "mismatch_months_with_missing_bulletin_week": 4,
+        "mismatch_months_unexplained": 1,
+        "correlation": 0.9973
+      }
+    }
+  },
+  "quality": {
+    "run_id": "20261020T141626-2b4f26",
+    "status": "pass",
+    "counts": {
+      "FLAG": 16,
+      "PASS": 8,
+      "FIX": 6,
+      "FILL": 1
+    }
+  },
+  "freshness": {
+    "nih_idsr": {
+      "newest": "2026-09-28",
+      "age_h": 542.3078942402777,
+      "sla_h": 336,
+      "late": true
+    },
+    "open_meteo": {
+      "newest": "2026-10-20 14:00:00",
+      "age_h": 0.3078942402777778,
+      "sla_h": 6,
+      "late": false
+    }
+  },
+  "last_good": {
+    "run_id": "20261020T141626-2b4f26",
+    "status": "success",
+    "started_utc": "2026-10-20T14:16:26.440929+00:00",
+    "finished_utc": "2026-10-20T14:18:31.063480+00:00",
+    "duration_s": 124.6,
+    "mode": "incremental",
+    "steps": {
+      "verify_raw": {
+        "problems": []
+      },
+      "gate0": {
+        "nih_idsr": "ACCEPT",
+        "open_meteo": "ACCEPT_API",
+        "opendengue": "ACCEPT",
+        "hdx": "ACCEPT",
+        "nasa_power": "NOT_USED"
+      },
+      "fetch": {
+        "context_files": 0,
+        "rag_docs": 0,
+        "new_bulletins": 0,
+        "seconds": 11.7
+      },
+      "extract": {
+        "rows": 205876,
+        "seconds": 5.4
+      },
+      "weather": {
+        "archive": {
+          "fetched": 0,
+          "deferred_approx": 40
+        },
+        "forecast": {
+          "fetched": 0
+        },
+        "seconds": 0.7
+      },
+      "cleaned": {
+        "idsr_rows": 203895,
+        "weather_rows": 2916480,
+        "districts_matched": 119,
+        "districts_unmatched": 40,
+        "seconds": 63.6
+      },
+      "gold": {
+        "gold_rows": 34920,
+        "weeks": 180,
+        "districts": 97,
+        "psi_primary": 0.031098364087485994,
+        "gate2_pass": true,
+        "reported_rows": 15876,
+        "seconds": 7.1
+      },
+      "local_validation": {
+        "months": 20,
+        "exact_match_months": 15,
+        "mismatch_months_with_missing_bulletin_week": 4,
+        "mismatch_months_unexplained": 1,
+        "correlation": 0.9973
+      }
+    },
+    "gold_rows": 34920,
+    "weeks": 180,
+    "districts": 97,
+    "psi_primary": 0.031098364087485994,
+    "gate2_pass": true,
+    "reported_rows": 15876,
+    "seconds": 7.1
+  }
+}

@@ -1,0 +1,32 @@
+# Reviewed spellings: IDSR bulletin name -> OCHA ADM2 pcode (HDX cod-ab-pak, valid 2022-09-09).
+# Add a row only after checking the name on a bulletin page. Districts created after the OCHA
+# boundaries (Keamari 2020; Hub, Usta Muhammad, Surab 2022) are deliberately NOT mapped to a
+# parent district: they stay unmatched (flagged) rather than being double-counted.
+province,idsr_name,adm2_pcode,reason
+Sindh,Kamber,PK709,Kambar Shahdad Kot (short name used in bulletins)
+Balochistan,Musa Khail,PK221,Musakhel (spelling)
+Balochistan,MusaKhel,PK221,Musakhel (spelling)
+Balochistan,Quetts,PK226,Quetta (typo in one bulletin)
+Khyber Pakhtunkhwa,L & C Kurram,PK518,Lower & Central Kurram - part of OCHA Kurram; summed with Upper Kurram
+Khyber Pakhtunkhwa,Upper Kurram,PK518,Part of OCHA Kurram; summed with L & C Kurram
+Khyber Pakhtunkhwa,NWA,PK525,North Waziristan Agency
+Khyber Pakhtunkhwa,SWA,PK530,South Waziristan Agency (not Swabi)
+Khyber Pakhtunkhwa,SWU,PK530,South Waziristan Upper - part of OCHA South Waziristan
+Khyber Pakhtunkhwa,SW(U),PK530,South Waziristan Upper
+Khyber Pakhtunkhwa,SW (L),PK530,South Waziristan Lower
+Khyber Pakhtunkhwa,South Waziristan (Lower),PK530,Part of OCHA South Waziristan
+Khyber Pakhtunkhwa,South Waziristan (Upper),PK530,Part of OCHA South Waziristan
+Khyber Pakhtunkhwa,SD Peshawar,PK528,Former Frontier Region sub-division merged into Peshawar
+Khyber Pakhtunkhwa,SD Tank,PK533,Former Frontier Region sub-division merged into Tank
+Khyber Pakhtunkhwa,SD Bannu,PK503,Former Frontier Region sub-division merged into Bannu
+Khyber Pakhtunkhwa,SD Lakki,PK519,Former Frontier Region sub-division merged into Lakki Marwat
+Khyber Pakhtunkhwa,SD Kohat,PK514,Former Frontier Region sub-division merged into Kohat
+Khyber Pakhtunkhwa,SD DI Khan,PK509,Former Frontier Region sub-division merged into D. I. Khan
+Khyber Pakhtunkhwa,Hangue,PK510,Hangu (spelling)
+Khyber Pakhtunkhwa,Kolai Palas,PK517,Kolai Palas Kohistan
+Balochistan,Kech (Turbat),PK211,Kech (district HQ Turbat in brackets)
+Balochistan,Kachhi (Bolan),PK209,Kachhi (old name Bolan in brackets)
+Balochistan,Naseerabad,PK222,Nasirabad (spelling)
+Balochistan,Sohbat pur,PK229,Sohbatpur (spelling)
+Balochistan,Lasbella,PK217,Lasbela (spelling)
+Khyber Pakhtunkhwa,Battagram,PK504,Batagram (spelling)

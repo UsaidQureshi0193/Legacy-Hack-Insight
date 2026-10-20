@@ -1,0 +1,170 @@
+{
+  "what": "NIH IDSR national dengue (parsed by us) vs OpenDengue v1.3 monthly Pakistan totals",
+  "months": 20,
+  "exact_match_months": 15,
+  "mismatch_months_with_missing_bulletin_week": 4,
+  "mismatch_months_unexplained": 1,
+  "correlation": 0.9973,
+  "rows": [
+    {
+      "month": "2023-06",
+      "opendengue": 528.0,
+      "nih_parsed": 528.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2023-07",
+      "opendengue": 960.0,
+      "nih_parsed": 799.0,
+      "nih_weeks": 3,
+      "exact": false,
+      "missing_week": true
+    },
+    {
+      "month": "2023-08",
+      "opendengue": 602.0,
+      "nih_parsed": 519.0,
+      "nih_weeks": 4,
+      "exact": false,
+      "missing_week": false
+    },
+    {
+      "month": "2023-09",
+      "opendengue": 953.0,
+      "nih_parsed": 953.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2023-10",
+      "opendengue": 1658.0,
+      "nih_parsed": 1658.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2023-11",
+      "opendengue": 1397.0,
+      "nih_parsed": 1397.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2023-12",
+      "opendengue": 540.0,
+      "nih_parsed": 540.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-01",
+      "opendengue": 342.0,
+      "nih_parsed": 342.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-02",
+      "opendengue": 374.0,
+      "nih_parsed": 374.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-03",
+      "opendengue": 282.0,
+      "nih_parsed": 282.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-04",
+      "opendengue": 823.0,
+      "nih_parsed": 823.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-05",
+      "opendengue": 7675.0,
+      "nih_parsed": 7675.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-06",
+      "opendengue": 3252.0,
+      "nih_parsed": 2987.0,
+      "nih_weeks": 3,
+      "exact": false,
+      "missing_week": true
+    },
+    {
+      "month": "2024-07",
+      "opendengue": 3106.0,
+      "nih_parsed": 3106.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-08",
+      "opendengue": 6470.0,
+      "nih_parsed": 6470.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-09",
+      "opendengue": 8986.0,
+      "nih_parsed": 8986.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-10",
+      "opendengue": 15361.0,
+      "nih_parsed": 15361.0,
+      "nih_weeks": 5,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2024-11",
+      "opendengue": 7733.0,
+      "nih_parsed": 6579.0,
+      "nih_weeks": 3,
+      "exact": false,
+      "missing_week": true
+    },
+    {
+      "month": "2024-12",
+      "opendengue": 4029.0,
+      "nih_parsed": 4029.0,
+      "nih_weeks": 4,
+      "exact": true,
+      "missing_week": false
+    },
+    {
+      "month": "2025-01",
+      "opendengue": 2803.0,
+      "nih_parsed": 2100.0,
+      "nih_weeks": 3,
+      "exact": false,
+      "missing_week": true
+    }
+  ]
+}

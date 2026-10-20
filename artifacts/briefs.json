@@ -1,0 +1,1058 @@
+[
+  {
+    "brief_id": "brief-malaria-Balochistan-en",
+    "disease": "malaria",
+    "province": "Balochistan",
+    "question": "Which districts in Balochistan have the highest malaria risk next week, and what prevention and control should be done?",
+    "lang": "en",
+    "status": "answered",
+    "text": "Expected suspected malaria cases for the week starting 2026-09-28:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Kech (Balochistan): 385  [fc-malaria-PK211-2026-09-28; based on f29dcd4ebc30ea60]\n  - Mastung (Balochistan): 326  [fc-malaria-PK220-2026-09-28; based on 96dd1849464c7267]\n  - Musakhel (Balochistan): 239  [fc-malaria-PK221-2026-09-28; based on 6adfec21b0622bd3]\n  - Lasbela (Balochistan): 222  [fc-malaria-PK217-2026-09-28; based on d4fe8c9134bc66db]\n  - Panjgur (Balochistan): 198  [fc-malaria-PK224-2026-09-28; based on a705e2808f1b1bd8]\nWhat official guidance says:\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nSources:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nData rows used: fc-malaria-PK211-2026-09-28, fc-malaria-PK217-2026-09-28, fc-malaria-PK220-2026-09-28, fc-malaria-PK221-2026-09-28, fc-malaria-PK224-2026-09-28\n\nThis is information, not medical advice. If someone has high fever with bleeding, severe stomach pain, repeated vomiting or drowsiness, go to the nearest hospital now or call Rescue 1122.",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 385.0,
+        "row_id": "fc-malaria-PK211-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N2",
+        "value": 326.0,
+        "row_id": "fc-malaria-PK220-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N3",
+        "value": 239.0,
+        "row_id": "fc-malaria-PK221-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N4",
+        "value": 222.0,
+        "row_id": "fc-malaria-PK217-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N5",
+        "value": 198.0,
+        "row_id": "fc-malaria-PK224-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "Kech is expected to have the most suspected malaria cases in the week of 28 Sep 2026: about 385.",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Kech",
+            "province": "Balochistan",
+            "last_week": 385.0,
+            "expected": 385.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK211-2026-09-28",
+            "row_id": "f29dcd4ebc30ea60"
+          },
+          {
+            "district": "Mastung",
+            "province": "Balochistan",
+            "last_week": 326.0,
+            "expected": 326.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK220-2026-09-28",
+            "row_id": "96dd1849464c7267"
+          },
+          {
+            "district": "Musakhel",
+            "province": "Balochistan",
+            "last_week": 239.0,
+            "expected": 239.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK221-2026-09-28",
+            "row_id": "6adfec21b0622bd3"
+          },
+          {
+            "district": "Lasbela",
+            "province": "Balochistan",
+            "last_week": 222.0,
+            "expected": 222.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK217-2026-09-28",
+            "row_id": "d4fe8c9134bc66db"
+          },
+          {
+            "district": "Panjgur",
+            "province": "Balochistan",
+            "last_week": 198.0,
+            "expected": 198.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK224-2026-09-28",
+            "row_id": "a705e2808f1b1bd8"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-malaria-Balochistan-ur",
+    "disease": "malaria",
+    "province": "Balochistan",
+    "question": "اگلے ہفتے Balochistan کے کس ضلع میں ملیریا کا خطرہ زیادہ ہے اور بچاؤ اور کنٹرول کے لیے کیا کرنا چاہیے؟",
+    "lang": "ur",
+    "status": "answered",
+    "text": "ہفتہ 2026-09-28 کے لیے ملیریا کے متوقع مشتبہ کیسز:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Kech (Balochistan): 385  [fc-malaria-PK211-2026-09-28; based on f29dcd4ebc30ea60]\n  - Mastung (Balochistan): 326  [fc-malaria-PK220-2026-09-28; based on 96dd1849464c7267]\n  - Musakhel (Balochistan): 239  [fc-malaria-PK221-2026-09-28; based on 6adfec21b0622bd3]\n  - Lasbela (Balochistan): 222  [fc-malaria-PK217-2026-09-28; based on d4fe8c9134bc66db]\n  - Panjgur (Balochistan): 198  [fc-malaria-PK224-2026-09-28; based on a705e2808f1b1bd8]\nسرکاری رہنمائی کیا کہتی ہے (انگریزی اقتباس):\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nحوالہ جات:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nاستعمال شدہ ڈیٹا قطاریں: fc-malaria-PK211-2026-09-28, fc-malaria-PK217-2026-09-28, fc-malaria-PK220-2026-09-28, fc-malaria-PK221-2026-09-28, fc-malaria-PK224-2026-09-28\n\nیہ معلومات ہیں، طبی مشورہ نہیں۔ اگر کسی کو تیز بخار کے ساتھ خون آنا، پیٹ میں شدید درد، بار بار قے یا غنودگی ہو تو فوراً قریبی ہسپتال جائیں یا ریسکیو 1122 پر کال کریں۔",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 385.0,
+        "row_id": "fc-malaria-PK211-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N2",
+        "value": 326.0,
+        "row_id": "fc-malaria-PK220-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N3",
+        "value": 239.0,
+        "row_id": "fc-malaria-PK221-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N4",
+        "value": 222.0,
+        "row_id": "fc-malaria-PK217-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N5",
+        "value": 198.0,
+        "row_id": "fc-malaria-PK224-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "ہفتہ 28-09-2026 میں سب سے زیادہ مشتبہ ملیریا کیسز Kech میں متوقع ہیں: تقریباً 385۔",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Kech",
+            "province": "Balochistan",
+            "last_week": 385.0,
+            "expected": 385.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK211-2026-09-28",
+            "row_id": "f29dcd4ebc30ea60"
+          },
+          {
+            "district": "Mastung",
+            "province": "Balochistan",
+            "last_week": 326.0,
+            "expected": 326.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK220-2026-09-28",
+            "row_id": "96dd1849464c7267"
+          },
+          {
+            "district": "Musakhel",
+            "province": "Balochistan",
+            "last_week": 239.0,
+            "expected": 239.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK221-2026-09-28",
+            "row_id": "6adfec21b0622bd3"
+          },
+          {
+            "district": "Lasbela",
+            "province": "Balochistan",
+            "last_week": 222.0,
+            "expected": 222.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK217-2026-09-28",
+            "row_id": "d4fe8c9134bc66db"
+          },
+          {
+            "district": "Panjgur",
+            "province": "Balochistan",
+            "last_week": 198.0,
+            "expected": 198.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 9",
+            "forecast_id": "fc-malaria-PK224-2026-09-28",
+            "row_id": "a705e2808f1b1bd8"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-malaria-Khyber Pakhtunkhwa-en",
+    "disease": "malaria",
+    "province": "Khyber Pakhtunkhwa",
+    "question": "Which districts in Khyber Pakhtunkhwa have the highest malaria risk next week, and what prevention and control should be done?",
+    "lang": "en",
+    "status": "answered",
+    "text": "Expected suspected malaria cases for the week starting 2026-09-28:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Khyber (Khyber Pakhtunkhwa): 771  [fc-malaria-PK513-2026-09-28; based on bdcb6d17df25189a]\nWhat official guidance says:\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nSources:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nData rows used: fc-malaria-PK513-2026-09-28\n\nThis is information, not medical advice. If someone has high fever with bleeding, severe stomach pain, repeated vomiting or drowsiness, go to the nearest hospital now or call Rescue 1122.",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 771.0,
+        "row_id": "fc-malaria-PK513-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "Khyber is expected to have the most suspected malaria cases in the week of 28 Sep 2026: about 771.",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Khyber",
+            "province": "Khyber Pakhtunkhwa",
+            "last_week": 771.0,
+            "expected": 771.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 11",
+            "forecast_id": "fc-malaria-PK513-2026-09-28",
+            "row_id": "bdcb6d17df25189a"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-malaria-Khyber Pakhtunkhwa-ur",
+    "disease": "malaria",
+    "province": "Khyber Pakhtunkhwa",
+    "question": "اگلے ہفتے Khyber Pakhtunkhwa کے کس ضلع میں ملیریا کا خطرہ زیادہ ہے اور بچاؤ اور کنٹرول کے لیے کیا کرنا چاہیے؟",
+    "lang": "ur",
+    "status": "answered",
+    "text": "ہفتہ 2026-09-28 کے لیے ملیریا کے متوقع مشتبہ کیسز:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Khyber (Khyber Pakhtunkhwa): 771  [fc-malaria-PK513-2026-09-28; based on bdcb6d17df25189a]\nسرکاری رہنمائی کیا کہتی ہے (انگریزی اقتباس):\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nحوالہ جات:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nاستعمال شدہ ڈیٹا قطاریں: fc-malaria-PK513-2026-09-28\n\nیہ معلومات ہیں، طبی مشورہ نہیں۔ اگر کسی کو تیز بخار کے ساتھ خون آنا، پیٹ میں شدید درد، بار بار قے یا غنودگی ہو تو فوراً قریبی ہسپتال جائیں یا ریسکیو 1122 پر کال کریں۔",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 771.0,
+        "row_id": "fc-malaria-PK513-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "ہفتہ 28-09-2026 میں سب سے زیادہ مشتبہ ملیریا کیسز Khyber میں متوقع ہیں: تقریباً 771۔",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Khyber",
+            "province": "Khyber Pakhtunkhwa",
+            "last_week": 771.0,
+            "expected": 771.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 11",
+            "forecast_id": "fc-malaria-PK513-2026-09-28",
+            "row_id": "bdcb6d17df25189a"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-malaria-Sindh-en",
+    "disease": "malaria",
+    "province": "Sindh",
+    "question": "Which districts in Sindh have the highest malaria risk next week, and what prevention and control should be done?",
+    "lang": "en",
+    "status": "answered",
+    "text": "Expected suspected malaria cases for the week starting 2026-09-28:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Sanghar (Sindh): 5,175  [fc-malaria-PK718-2026-09-28; based on 200bd55180f952ac]\n  - Badin (Sindh): 5,133  [fc-malaria-PK701-2026-09-28; based on 11268a09d03d1aed]\n  - Larkana (Sindh): 4,335  [fc-malaria-PK713-2026-09-28; based on 00bb9ea33a4f6d98]\n  - Ghotki (Sindh): 4,123  [fc-malaria-PK705-2026-09-28; based on 9f3e597ddbdd69d9]\n  - Umer Kot (Sindh): 4,072  [fc-malaria-PK728-2026-09-28; based on 4750039b8a7b5c0c]\nWhat official guidance says:\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nSources:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nData rows used: fc-malaria-PK701-2026-09-28, fc-malaria-PK705-2026-09-28, fc-malaria-PK713-2026-09-28, fc-malaria-PK718-2026-09-28, fc-malaria-PK728-2026-09-28\n\nThis is information, not medical advice. If someone has high fever with bleeding, severe stomach pain, repeated vomiting or drowsiness, go to the nearest hospital now or call Rescue 1122.",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 5175.0,
+        "row_id": "fc-malaria-PK718-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N2",
+        "value": 5133.0,
+        "row_id": "fc-malaria-PK701-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N3",
+        "value": 4335.0,
+        "row_id": "fc-malaria-PK713-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N4",
+        "value": 4123.0,
+        "row_id": "fc-malaria-PK705-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N5",
+        "value": 4072.0,
+        "row_id": "fc-malaria-PK728-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "Sanghar is expected to have the most suspected malaria cases in the week of 28 Sep 2026: about 5,175.",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Sanghar",
+            "province": "Sindh",
+            "last_week": 5175.0,
+            "expected": 5175.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK718-2026-09-28",
+            "row_id": "200bd55180f952ac"
+          },
+          {
+            "district": "Badin",
+            "province": "Sindh",
+            "last_week": 5133.0,
+            "expected": 5133.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK701-2026-09-28",
+            "row_id": "11268a09d03d1aed"
+          },
+          {
+            "district": "Larkana",
+            "province": "Sindh",
+            "last_week": 4335.0,
+            "expected": 4335.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK713-2026-09-28",
+            "row_id": "00bb9ea33a4f6d98"
+          },
+          {
+            "district": "Ghotki",
+            "province": "Sindh",
+            "last_week": 4123.0,
+            "expected": 4123.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK705-2026-09-28",
+            "row_id": "9f3e597ddbdd69d9"
+          },
+          {
+            "district": "Umer Kot",
+            "province": "Sindh",
+            "last_week": 4072.0,
+            "expected": 4072.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK728-2026-09-28",
+            "row_id": "4750039b8a7b5c0c"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-malaria-Sindh-ur",
+    "disease": "malaria",
+    "province": "Sindh",
+    "question": "اگلے ہفتے Sindh کے کس ضلع میں ملیریا کا خطرہ زیادہ ہے اور بچاؤ اور کنٹرول کے لیے کیا کرنا چاہیے؟",
+    "lang": "ur",
+    "status": "answered",
+    "text": "ہفتہ 2026-09-28 کے لیے ملیریا کے متوقع مشتبہ کیسز:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Sanghar (Sindh): 5,175  [fc-malaria-PK718-2026-09-28; based on 200bd55180f952ac]\n  - Badin (Sindh): 5,133  [fc-malaria-PK701-2026-09-28; based on 11268a09d03d1aed]\n  - Larkana (Sindh): 4,335  [fc-malaria-PK713-2026-09-28; based on 00bb9ea33a4f6d98]\n  - Ghotki (Sindh): 4,123  [fc-malaria-PK705-2026-09-28; based on 9f3e597ddbdd69d9]\n  - Umer Kot (Sindh): 4,072  [fc-malaria-PK728-2026-09-28; based on 4750039b8a7b5c0c]\nسرکاری رہنمائی کیا کہتی ہے (انگریزی اقتباس):\n  - \"Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.\" [S1]\n  - \"-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.\" [S2]\n  - \"Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...\" [S3]\n\nحوالہ جات:\n  [S1] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\n  [S2] Advisory - Vector-Borne Disease During Floods 2025 - p.3 (https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf)\n  [S3] Malaria - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/malaria)\nاستعمال شدہ ڈیٹا قطاریں: fc-malaria-PK701-2026-09-28, fc-malaria-PK705-2026-09-28, fc-malaria-PK713-2026-09-28, fc-malaria-PK718-2026-09-28, fc-malaria-PK728-2026-09-28\n\nیہ معلومات ہیں، طبی مشورہ نہیں۔ اگر کسی کو تیز بخار کے ساتھ خون آنا، پیٹ میں شدید درد، بار بار قے یا غنودگی ہو تو فوراً قریبی ہسپتال جائیں یا ریسکیو 1122 پر کال کریں۔",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 5175.0,
+        "row_id": "fc-malaria-PK718-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N2",
+        "value": 5133.0,
+        "row_id": "fc-malaria-PK701-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N3",
+        "value": 4335.0,
+        "row_id": "fc-malaria-PK713-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N4",
+        "value": 4123.0,
+        "row_id": "fc-malaria-PK705-2026-09-28",
+        "table": "gold.forecast_malaria"
+      },
+      {
+        "key": "N5",
+        "value": 4072.0,
+        "row_id": "fc-malaria-PK728-2026-09-28",
+        "table": "gold.forecast_malaria"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+        "chunk_id": "WHO-FS-MALARIA#p1-5"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-ADV-VBD-FLOODS-2025-09",
+        "title": "Advisory - Vector-Borne Disease During Floods 2025",
+        "page": 3,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf",
+        "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+        "chunk_id": "NIH-ADV-VBD-FLOODS-2025-09#p3-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-MALARIA",
+        "title": "Malaria - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+        "chunk_id": "WHO-FS-MALARIA#p1-8"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "ہفتہ 28-09-2026 میں سب سے زیادہ مشتبہ ملیریا کیسز Sanghar میں متوقع ہیں: تقریباً 5,175۔",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "malaria",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Sanghar",
+            "province": "Sindh",
+            "last_week": 5175.0,
+            "expected": 5175.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK718-2026-09-28",
+            "row_id": "200bd55180f952ac"
+          },
+          {
+            "district": "Badin",
+            "province": "Sindh",
+            "last_week": 5133.0,
+            "expected": 5133.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK701-2026-09-28",
+            "row_id": "11268a09d03d1aed"
+          },
+          {
+            "district": "Larkana",
+            "province": "Sindh",
+            "last_week": 4335.0,
+            "expected": 4335.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK713-2026-09-28",
+            "row_id": "00bb9ea33a4f6d98"
+          },
+          {
+            "district": "Ghotki",
+            "province": "Sindh",
+            "last_week": 4123.0,
+            "expected": 4123.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK705-2026-09-28",
+            "row_id": "9f3e597ddbdd69d9"
+          },
+          {
+            "district": "Umer Kot",
+            "province": "Sindh",
+            "last_week": 4072.0,
+            "expected": 4072.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 7",
+            "forecast_id": "fc-malaria-PK728-2026-09-28",
+            "row_id": "4750039b8a7b5c0c"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "Lower the risk of getting malaria by avoiding mosquito bites: Use mosquito nets when sleeping in places where malaria is present. Use mosquito repellents (containing DEET, IR3535 or Icaridin) after dusk.",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          },
+          {
+            "sid": "S2",
+            "quote": "-3- Ensure mechanical elimination of all potential breeding sites. Chemical treatment (larvicides and adulticides) can be used as a supplementary measure where mechanical elimination is not possible.",
+            "title": "Advisory - Vector-Borne Disease During Floods 2025",
+            "page": 3,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2025/09/Advisory-vector-borne disease-during-floods-2025.pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Preventive chemotherapy includes perennial malaria chemoprevention (PMC), seasonal malaria chemoprevention (SMC), intermittent preventive treatment of malaria in pregnancy (IPTp) and school-aged children (IPTsc), post-discharge malaria chemoprevention (PDMC) and mass drug administration (MDA). These safe and cost-effective strategies are intended to complement ongoing malaria control activities, i...",
+            "title": "Malaria - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/malaria"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-dengue-Khyber Pakhtunkhwa-en",
+    "disease": "dengue",
+    "province": "Khyber Pakhtunkhwa",
+    "question": "Which districts in Khyber Pakhtunkhwa have the highest dengue risk next week, and what prevention and control should be done?",
+    "lang": "en",
+    "status": "answered",
+    "text": "Expected suspected dengue cases for the week starting 2026-09-28:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Khyber (Khyber Pakhtunkhwa): 37  [fc-dengue-PK513-2026-09-28; based on b5734bf0629a5cda]\nWhat official guidance says:\n  - \"To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...\" [S1]\n  - \"Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...\" [S2]\n  - \"Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.\" [S3]\n\nSources:\n  [S1] Dengue and severe dengue - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue)\n  [S2] Guidelines for Dengue Fever and Dengue Haemorrhagic Fever - p.4 (https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf)\n  [S3] Dengue and severe dengue - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue)\nData rows used: fc-dengue-PK513-2026-09-28\n\nThis is information, not medical advice. If someone has high fever with bleeding, severe stomach pain, repeated vomiting or drowsiness, go to the nearest hospital now or call Rescue 1122.",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 37.0,
+        "row_id": "fc-dengue-PK513-2026-09-28",
+        "table": "gold.forecast_dengue"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-DENGUE",
+        "title": "Dengue and severe dengue - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+        "quote": "To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...",
+        "chunk_id": "WHO-FS-DENGUE#p1-12"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-GL-DENGUE-DHF",
+        "title": "Guidelines for Dengue Fever and Dengue Haemorrhagic Fever",
+        "page": 4,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf",
+        "quote": "Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...",
+        "chunk_id": "NIH-GL-DENGUE-DHF#p4-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-DENGUE",
+        "title": "Dengue and severe dengue - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+        "quote": "Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.",
+        "chunk_id": "WHO-FS-DENGUE#p1-11"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "Khyber is expected to have the most suspected dengue cases in the week of 28 Sep 2026: about 37.",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "dengue",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Khyber",
+            "province": "Khyber Pakhtunkhwa",
+            "last_week": 37.0,
+            "expected": 37.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 11",
+            "forecast_id": "fc-dengue-PK513-2026-09-28",
+            "row_id": "b5734bf0629a5cda"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...",
+            "title": "Dengue and severe dengue - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
+          },
+          {
+            "sid": "S2",
+            "quote": "Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...",
+            "title": "Guidelines for Dengue Fever and Dengue Haemorrhagic Fever",
+            "page": 4,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.",
+            "title": "Dengue and severe dengue - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  },
+  {
+    "brief_id": "brief-dengue-Khyber Pakhtunkhwa-ur",
+    "disease": "dengue",
+    "province": "Khyber Pakhtunkhwa",
+    "question": "اگلے ہفتے Khyber Pakhtunkhwa کے کس ضلع میں ڈینگی کا خطرہ زیادہ ہے اور بچاؤ اور کنٹرول کے لیے کیا کرنا چاہیے؟",
+    "lang": "ur",
+    "status": "answered",
+    "text": "ہفتہ 2026-09-28 کے لیے ڈینگی کے متوقع مشتبہ کیسز:\n  (the model did not beat the baseline for this disease on validation, so this is the baseline: last reported week, no interval)\n  - Khyber (Khyber Pakhtunkhwa): 37  [fc-dengue-PK513-2026-09-28; based on b5734bf0629a5cda]\nسرکاری رہنمائی کیا کہتی ہے (انگریزی اقتباس):\n  - \"To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...\" [S1]\n  - \"Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...\" [S2]\n  - \"Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.\" [S3]\n\nحوالہ جات:\n  [S1] Dengue and severe dengue - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue)\n  [S2] Guidelines for Dengue Fever and Dengue Haemorrhagic Fever - p.4 (https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf)\n  [S3] Dengue and severe dengue - fact sheet - p.1 (https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue)\nاستعمال شدہ ڈیٹا قطاریں: fc-dengue-PK513-2026-09-28\n\nیہ معلومات ہیں، طبی مشورہ نہیں۔ اگر کسی کو تیز بخار کے ساتھ خون آنا، پیٹ میں شدید درد، بار بار قے یا غنودگی ہو تو فوراً قریبی ہسپتال جائیں یا ریسکیو 1122 پر کال کریں۔",
+    "numbers": [
+      {
+        "key": "N1",
+        "value": 37.0,
+        "row_id": "fc-dengue-PK513-2026-09-28",
+        "table": "gold.forecast_dengue"
+      }
+    ],
+    "citations": [
+      {
+        "sid": "S1",
+        "doc_id": "WHO-FS-DENGUE",
+        "title": "Dengue and severe dengue - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+        "quote": "To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...",
+        "chunk_id": "WHO-FS-DENGUE#p1-12"
+      },
+      {
+        "sid": "S2",
+        "doc_id": "NIH-GL-DENGUE-DHF",
+        "title": "Guidelines for Dengue Fever and Dengue Haemorrhagic Fever",
+        "page": 4,
+        "url": "https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf",
+        "quote": "Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...",
+        "chunk_id": "NIH-GL-DENGUE-DHF#p4-0"
+      },
+      {
+        "sid": "S3",
+        "doc_id": "WHO-FS-DENGUE",
+        "title": "Dengue and severe dengue - fact sheet",
+        "page": 1,
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+        "quote": "Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.",
+        "chunk_id": "WHO-FS-DENGUE#p1-11"
+      }
+    ],
+    "missing": [],
+    "wording": "template",
+    "headline": "ہفتہ 28-09-2026 میں سب سے زیادہ مشتبہ ڈینگی کیسز Khyber میں متوقع ہیں: تقریباً 37۔",
+    "blocks": [
+      {
+        "type": "forecast",
+        "disease": "dengue",
+        "week": "2026-09-28",
+        "method": "baseline_last_value",
+        "rows": [
+          {
+            "district": "Khyber",
+            "province": "Khyber Pakhtunkhwa",
+            "last_week": 37.0,
+            "expected": 37.0,
+            "low": null,
+            "high": null,
+            "source": "NIH bulletin · Week 39, 2026 · page 11",
+            "forecast_id": "fc-dengue-PK513-2026-09-28",
+            "row_id": "b5734bf0629a5cda"
+          }
+        ]
+      },
+      {
+        "type": "guidance",
+        "items": [
+          {
+            "sid": "S1",
+            "quote": "To lower your risk of getting dengue, protect yourself from mosquito bites by using: clothes that cover as much of your body as possible; mosquito nets, ideally sprayed with insect repellent, if sleeping during the day; window screens; mosquito repellents (containing DEET, Picaridin or IR3535); and coils and vaporizers. To prevent mosquitoes from breeding: implement environmental management and mo...",
+            "title": "Dengue and severe dengue - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
+          },
+          {
+            "sid": "S2",
+            "quote": "Prevention and Control At present, the only method of controlling or preventing dengue and DHF is to combat the vector mosquitoes. In Asia and the Americas, Aedes aegypti breeds primarily in man-made containers like earthenware jars, metal drums and concrete cisterns used for domestic water storage, as well as discarded plastic food containers, used automobile tyres and other items that collect ra...",
+            "title": "Guidelines for Dengue Fever and Dengue Haemorrhagic Fever",
+            "page": 4,
+            "url": "https://www.nih.org.pk/wp-content/uploads/2018/03/Guidelines-for-Dengue-Fever-and-Dengue-Haemorrhagic-Fever..pdf"
+          },
+          {
+            "sid": "S3",
+            "quote": "Community risks to dengue also depend on population knowledge, attitudes and practices towards dengue, as exposure is closely related to behaviours such as water storage, plant-keeping and self-protection against mosquito bites. Routine vector surveillance and control activities and targeted community engagement greatly enhance resilience.",
+            "title": "Dengue and severe dengue - fact sheet",
+            "page": 1,
+            "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"
+          }
+        ]
+      }
+    ],
+    "prompt_version": "insight_wording_v1",
+    "pii_masked": []
+  }
+]

@@ -1,0 +1,16 @@
+# environment and secrets (keys live outside the repo)
+.venv/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# data layers are rebuilt by `make data`; manifest.csv (committed) proves what was fetched
+data/
+publish/
+logs_*.txt
+
+# large binary artifacts are rebuilt by `make train` / `make index`
+artifacts/rag/
+artifacts/model_*/*.txt
+artifacts/model_*/*.parquet
