@@ -1,14 +1,59 @@
 {
   "last_run": {
-    "run_id": "20261020T141626-2b4f26",
+    "run_id": "20261021T051556-82a028",
     "status": "success",
-    "started_utc": "2026-10-20T14:16:26.440929+00:00",
-    "finished_utc": "2026-10-20T14:18:31.063480+00:00",
-    "duration_s": 124.6,
+    "started_utc": "2026-10-21T05:15:56.513258+00:00",
+    "finished_utc": "2026-10-21T05:16:54.120905+00:00",
+    "duration_s": 57.6,
     "mode": "incremental",
     "steps": {
       "verify_raw": {
-        "problems": []
+        "problems": [
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1837.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1908.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1932.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T0730.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T0927.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1003.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1152.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1236.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1237.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1238.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1336.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1338.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1401.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1405.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1416.html",
+          "missing: data/raw/open_meteo/archive/2023_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk06.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk07.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk08.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk00.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk01.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk02.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk06.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk07.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk08.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk00.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk01.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk02.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk06.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk00.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk01.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk02.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk03.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk04.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk05.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk06.json"
+        ]
       },
       "gate0": {
         "nih_idsr": "ACCEPT",
@@ -21,11 +66,11 @@
         "context_files": 0,
         "rag_docs": 0,
         "new_bulletins": 0,
-        "seconds": 11.7
+        "seconds": 4.5
       },
       "extract": {
         "rows": 205876,
-        "seconds": 5.4
+        "seconds": 6.8
       },
       "weather": {
         "archive": {
@@ -33,16 +78,17 @@
           "deferred_approx": 40
         },
         "forecast": {
-          "fetched": 0
+          "fetched": 0,
+          "skipped": "last forecast 03:00 UTC < 3 h ago"
         },
-        "seconds": 0.7
+        "seconds": 0.0
       },
       "cleaned": {
-        "idsr_rows": 203895,
-        "weather_rows": 2916480,
+        "idsr_rows": 204225,
+        "weather_rows": 327984,
         "districts_matched": 119,
         "districts_unmatched": 40,
-        "seconds": 63.6
+        "seconds": 33.9
       },
       "gold": {
         "gold_rows": 34920,
@@ -50,8 +96,9 @@
         "districts": 97,
         "psi_primary": 0.031098364087485994,
         "gate2_pass": true,
-        "reported_rows": 15876,
-        "seconds": 7.1
+        "reported_rows": 15905,
+        "weather_rows": 2220,
+        "seconds": 4.4
       },
       "local_validation": {
         "months": 20,
@@ -63,39 +110,84 @@
     }
   },
   "quality": {
-    "run_id": "20261020T141626-2b4f26",
+    "run_id": "20261021T051556-82a028",
     "status": "pass",
     "counts": {
       "FLAG": 16,
-      "PASS": 8,
-      "FIX": 6,
+      "PASS": 9,
+      "FIX": 7,
       "FILL": 1
     }
   },
   "freshness": {
     "nih_idsr": {
       "newest": "2026-09-28",
-      "age_h": 542.3078942402777,
+      "age_h": 557.2813813022223,
       "sla_h": 336,
       "late": true
     },
     "open_meteo": {
-      "newest": "2026-10-20 14:00:00",
-      "age_h": 0.3078942402777778,
+      "newest": "2026-10-21 05:00:00",
+      "age_h": 0.2813813022222222,
       "sla_h": 6,
       "late": false
     }
   },
   "last_good": {
-    "run_id": "20261020T141626-2b4f26",
+    "run_id": "20261021T051556-82a028",
     "status": "success",
-    "started_utc": "2026-10-20T14:16:26.440929+00:00",
-    "finished_utc": "2026-10-20T14:18:31.063480+00:00",
-    "duration_s": 124.6,
+    "started_utc": "2026-10-21T05:15:56.513258+00:00",
+    "finished_utc": "2026-10-21T05:16:54.120905+00:00",
+    "duration_s": 57.6,
     "mode": "incremental",
     "steps": {
       "verify_raw": {
-        "problems": []
+        "problems": [
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1837.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1908.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261019T1932.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T0730.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T0927.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1003.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1152.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1236.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1237.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1238.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1336.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1338.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1401.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1405.html",
+          "missing: data/raw/nih_idsr/listings/listing_20261020T1416.html",
+          "missing: data/raw/open_meteo/archive/2023_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk06.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk07.json",
+          "missing: data/raw/open_meteo/archive/2023_chunk08.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk00.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk01.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk02.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk06.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk07.json",
+          "missing: data/raw/open_meteo/archive/2024_chunk08.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk00.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk01.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk02.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk03.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk04.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk05.json",
+          "missing: data/raw/open_meteo/archive/2025_chunk06.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk00.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk01.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk02.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk03.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk04.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk05.json",
+          "missing: data/raw/open_meteo/forecast/20261020T09/chunk06.json"
+        ]
       },
       "gate0": {
         "nih_idsr": "ACCEPT",
@@ -108,11 +200,11 @@
         "context_files": 0,
         "rag_docs": 0,
         "new_bulletins": 0,
-        "seconds": 11.7
+        "seconds": 4.5
       },
       "extract": {
         "rows": 205876,
-        "seconds": 5.4
+        "seconds": 6.8
       },
       "weather": {
         "archive": {
@@ -120,16 +212,17 @@
           "deferred_approx": 40
         },
         "forecast": {
-          "fetched": 0
+          "fetched": 0,
+          "skipped": "last forecast 03:00 UTC < 3 h ago"
         },
-        "seconds": 0.7
+        "seconds": 0.0
       },
       "cleaned": {
-        "idsr_rows": 203895,
-        "weather_rows": 2916480,
+        "idsr_rows": 204225,
+        "weather_rows": 327984,
         "districts_matched": 119,
         "districts_unmatched": 40,
-        "seconds": 63.6
+        "seconds": 33.9
       },
       "gold": {
         "gold_rows": 34920,
@@ -137,8 +230,9 @@
         "districts": 97,
         "psi_primary": 0.031098364087485994,
         "gate2_pass": true,
-        "reported_rows": 15876,
-        "seconds": 7.1
+        "reported_rows": 15905,
+        "weather_rows": 2220,
+        "seconds": 4.4
       },
       "local_validation": {
         "months": 20,
@@ -153,7 +247,8 @@
     "districts": 97,
     "psi_primary": 0.031098364087485994,
     "gate2_pass": true,
-    "reported_rows": 15876,
-    "seconds": 7.1
+    "reported_rows": 15905,
+    "weather_rows": 2220,
+    "seconds": 4.4
   }
 }

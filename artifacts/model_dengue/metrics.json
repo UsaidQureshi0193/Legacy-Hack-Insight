@@ -20,7 +20,7 @@
   },
   "validation": {
     "mae_baseline": 14.314285714285715,
-    "mae_model": 15.399679247045787,
+    "mae_model": 15.174903823782833,
     "params": {
       "num_leaves": 7,
       "min_child_samples": 20,
@@ -30,110 +30,136 @@
       "bagging_freq": 1,
       "lambda_l2": 1.0
     },
-    "best_iter": 682
+    "best_iter": 800
+  },
+  "baseline_interval": {
+    "log_q10": -0.7698472034658763,
+    "log_q90": 1.0986122886681098,
+    "fitted_on": "validation residuals of the baseline"
   },
   "test": {
     "n": 576,
     "weeks": 17,
     "districts": 85,
     "mae_baseline": 9.823784722222221,
-    "mae_model": 13.757981862675708,
+    "mae_model": 13.373985188540864,
     "rmse_baseline": 31.545278580073507,
-    "rmse_model": 44.46352080635953,
-    "interval_coverage_80": 0.7951388888888888,
-    "mean_interval_width": 29.340226213905527,
-    "skill_vs_baseline": -0.4004767257932682,
-    "skill_mean": -0.4069249495559204,
+    "rmse_model": 42.58431856954202,
+    "interval_coverage_80": 0.6909722222222222,
+    "mean_interval_width": 25.14765413108607,
+    "skill_vs_baseline": -0.3613882598921161,
+    "baseline_interval_coverage_80": 0.8489583333333334,
+    "skill_mean": -0.3719243399998089,
     "skill_ci95": [
-      -0.5905906848444694,
-      -0.24327822641228597
+      -0.5337270654451439,
+      -0.222135498231947
     ]
   },
   "groups": {
     "province": [
       {
         "group": "province",
-        "value": "Sindh",
-        "n": 226,
-        "mae_baseline": 8.97,
-        "mae_model": 16.51,
-        "skill": -0.841,
-        "interval_coverage": 0.774,
-        "mean_target": 25.6
-      },
-      {
-        "group": "province",
         "value": "Balochistan",
         "n": 108,
         "mae_baseline": 6.86,
-        "mae_model": 9.31,
-        "skill": -0.358,
-        "interval_coverage": 0.926,
+        "mae_model": 11.19,
+        "skill": -0.632,
+        "interval_coverage": 0.88,
         "mean_target": 11.3
+      },
+      {
+        "group": "province",
+        "value": "Sindh",
+        "n": 226,
+        "mae_baseline": 8.97,
+        "mae_model": 14.48,
+        "skill": -0.615,
+        "interval_coverage": 0.721,
+        "mean_target": 25.6
       },
       {
         "group": "province",
         "value": "Khyber Pakhtunkhwa",
         "n": 242,
         "mae_baseline": 11.95,
-        "mae_model": 13.17,
-        "skill": -0.102,
-        "interval_coverage": 0.756,
+        "mae_model": 13.32,
+        "skill": -0.115,
+        "interval_coverage": 0.579,
         "mean_target": 19.2
       }
     ],
-    "poverty_tier": [
+    "area_type": [
       {
-        "group": "poverty_tier",
-        "value": "high",
-        "n": 576,
-        "mae_baseline": 9.82,
-        "mae_model": 13.76,
-        "skill": -0.4,
-        "interval_coverage": 0.795,
-        "mean_target": 20.2
+        "group": "area_type",
+        "value": "mostly urban",
+        "n": 12,
+        "mae_baseline": 97.42,
+        "mae_model": 143.19,
+        "skill": -0.47,
+        "interval_coverage": 0.333,
+        "mean_target": 213.1
+      },
+      {
+        "group": "area_type",
+        "value": "mostly rural",
+        "n": 485,
+        "mae_baseline": 8.25,
+        "mae_model": 11.42,
+        "skill": -0.383,
+        "interval_coverage": 0.685,
+        "mean_target": 16.9
+      },
+      {
+        "group": "area_type",
+        "value": "unknown",
+        "n": 79,
+        "mae_baseline": 6.15,
+        "mae_model": 5.68,
+        "skill": 0.076,
+        "interval_coverage": 0.785,
+        "mean_target": 11.2
       }
     ],
     "season": [
       {
         "group": "season",
-        "value": "post_monsoon",
-        "n": 335,
-        "mae_baseline": 10.34,
-        "mae_model": 15.28,
-        "skill": -0.478,
-        "interval_coverage": 0.77,
-        "mean_target": 23.1
-      },
-      {
-        "group": "season",
         "value": "monsoon",
         "n": 140,
         "mae_baseline": 11.08,
-        "mae_model": 15.91,
-        "skill": -0.436,
-        "interval_coverage": 0.757,
+        "mae_model": 15.71,
+        "skill": -0.418,
+        "interval_coverage": 0.729,
         "mean_target": 21.4
       },
       {
         "group": "season",
-        "value": "winter",
-        "n": 28,
-        "mae_baseline": 6.36,
-        "mae_model": 6.76,
-        "skill": -0.063,
-        "interval_coverage": 0.893,
-        "mean_target": 14.7
+        "value": "post_monsoon",
+        "n": 335,
+        "mae_baseline": 10.34,
+        "mae_model": 14.22,
+        "skill": -0.375,
+        "interval_coverage": 0.621,
+        "mean_target": 23.1
       },
       {
         "group": "season",
         "value": "pre_monsoon",
         "n": 73,
         "mae_baseline": 6.39,
-        "mae_model": 5.33,
-        "skill": 0.166,
-        "interval_coverage": 0.945,
+        "mae_model": 8.14,
+        "skill": -0.274,
+        "interval_coverage": 0.877,
         "mean_target": 7.2
+      },
+      {
+        "group": "season",
+        "value": "winter",
+        "n": 28,
+        "mae_baseline": 6.36,
+        "mae_model": 5.24,
+        "skill": 0.176,
+        "interval_coverage": 0.857,
+        "mean_target": 14.7
       }
     ],
     "size_band": [
@@ -142,9 +168,9 @@
         "value": "high (top 10%)",
         "n": 198,
         "mae_baseline": 26.26,
-        "mae_model": 37.51,
-        "skill": -0.428,
-        "interval_coverage": 0.692,
+        "mae_model": 36.51,
+        "skill": -0.39,
+        "interval_coverage": 0.49,
         "mean_target": 56.2
       },
       {
@@ -152,9 +178,9 @@
         "value": "low (<= median)",
         "n": 285,
         "mae_baseline": 0.49,
-        "mae_model": 0.56,
-        "skill": -0.15,
-        "interval_coverage": 0.937,
+        "mae_model": 0.52,
+        "skill": -0.067,
+        "interval_coverage": 0.863,
         "mean_target": 0.5
       },
       {
@@ -162,25 +188,25 @@
         "value": "medium",
         "n": 93,
         "mae_baseline": 3.44,
-        "mae_model": 3.64,
-        "skill": -0.058,
-        "interval_coverage": 0.581,
+        "mae_model": 3.52,
+        "skill": -0.024,
+        "interval_coverage": 0.591,
         "mean_target": 4.1
       }
     ],
     "district_worst10": []
   },
   "feature_importance_top10": {
-    "roll4_log": 7721.4,
-    "lag0_log": 1657.9,
-    "roll8_log": 1019.5,
-    "woy_sin": 436.9,
-    "lag1_log": 400.7,
-    "rh_mean_pct_lag1": 384.6,
-    "rh_mean_pct_roll4": 378.2,
-    "rh_mean_pct_lag3": 368.5,
-    "rh_mean_pct_lag0": 351.9,
-    "diff1_log": 271.3
+    "roll4_log": 11155.4,
+    "woy_sin": 4374.2,
+    "lag0_log": 1584.7,
+    "log_pop": 662.5,
+    "woy_cos": 594.9,
+    "roll8_log": 459.0,
+    "diff1_log": 355.6,
+    "lag1_log": 355.4,
+    "lag2_log": 252.0,
+    "lag3_log": 174.8
   },
   "features": [
     "lag0_log",
@@ -191,36 +217,16 @@
     "roll8_log",
     "diff1_log",
     "same_week_last_year_log",
-    "precip_sum_mm_lag0",
-    "precip_sum_mm_lag1",
-    "precip_sum_mm_lag2",
-    "precip_sum_mm_lag3",
-    "precip_sum_mm_roll4",
-    "temp_mean_c_lag0",
-    "temp_mean_c_lag1",
-    "temp_mean_c_lag2",
-    "temp_mean_c_lag3",
-    "temp_mean_c_roll4",
-    "rh_mean_pct_lag0",
-    "rh_mean_pct_lag1",
-    "rh_mean_pct_lag2",
-    "rh_mean_pct_lag3",
-    "rh_mean_pct_roll4",
-    "rain_hours_lag0",
-    "rain_hours_lag1",
-    "rain_hours_lag2",
-    "rain_hours_lag3",
-    "rain_hours_roll4",
     "woy_sin",
     "woy_cos",
     "province_code",
     "mpi",
     "log_pop"
   ],
-  "use_weather": true,
+  "use_weather": false,
   "use_lags": true,
-  "train_seconds": 4.6,
-  "peak_rss_mb_delta": 5.6,
-  "weather_rows_at_train": 23480,
+  "train_seconds": 3.4,
+  "peak_rss_mb_delta": 1.6,
+  "weather_rows_at_train": 2220,
   "served_method": "baseline (model did not beat baseline on validation)"
 }

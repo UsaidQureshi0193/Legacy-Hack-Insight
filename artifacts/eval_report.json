@@ -1,10 +1,11 @@
 {
   "summary": {
-    "n": 17,
+    "n": 22,
     "refusal_accuracy": 1.0,
     "citation_accuracy": 1.0,
     "number_faithfulness": 1.0,
-    "numbers_checked": 22,
+    "numbers_checked": 48,
+    "required_statements_ok": 1.0,
     "numbers_present_when_needed": 1.0
   },
   "items": [
@@ -16,10 +17,11 @@
       "refusal_correct": true,
       "citation_ok": null,
       "numbers_needed": true,
-      "numbers": 5,
-      "numbers_faithful": 5,
+      "numbers": 15,
+      "numbers_faithful": 15,
       "cited": "",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "fc-sindh-dengue",
@@ -32,7 +34,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": "no dengue forecast for Sindh: recent bulletins do not list dengue among its most frequent diseases, so there is no reliable recent count to forecast from"
+      "missing": "no dengue forecast for Sindh: recent bulletins do not list dengue among its most frequent diseases, so there is no reliable recent count to forecast from",
+      "statement_ok": null
     },
     {
       "id": "hist-badin",
@@ -45,7 +48,8 @@
       "numbers": 6,
       "numbers_faithful": 6,
       "cited": "",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "adv-dengue-home",
@@ -58,7 +62,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "WHO-FS-DENGUE;WHO-FS-DENGUE;NIH-ADV-VBD-FLOODS-2025-09",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "adv-warning-signs",
@@ -71,7 +76,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "NIH-ADV-VBD-FLOODS-2025-09;NIH-GL-DENGUE-DHF;WHO-FS-DENGUE",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "adv-vector-monsoon",
@@ -84,7 +90,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "NIH-ADV-VBD-FLOODS-2025-09;NIH-ADV-VBD-FLOODS-2025-09;NIH-GL-DENGUE-DHF",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "adv-aspirin",
@@ -97,7 +104,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "WHO-FS-DENGUE;WHO-FS-DENGUE;NIH-ADV-VBD-FLOODS-2025-09",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "adv-malaria-prevent",
@@ -110,7 +118,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "WHO-FS-MALARIA;WHO-FS-MALARIA;WHO-FS-MALARIA",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "ur-adv-dengue",
@@ -123,7 +132,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "WHO-FS-DENGUE;NIH-GL-DENGUE-DHF;WHO-FS-DENGUE",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "ur-fc",
@@ -133,10 +143,11 @@
       "refusal_correct": true,
       "citation_ok": null,
       "numbers_needed": true,
-      "numbers": 5,
-      "numbers_faithful": 5,
+      "numbers": 15,
+      "numbers_faithful": 15,
       "cited": "",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "status",
@@ -149,7 +160,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "mislead-zero",
@@ -162,7 +174,8 @@
       "numbers": 6,
       "numbers_faithful": 6,
       "cited": "",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
     },
     {
       "id": "idk-lahore",
@@ -175,7 +188,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": "'Lahore' is not among the districts in the NIH IDSR district tables (Punjab and Islamabad districts are not reported there), so there are no counts for it"
+      "missing": "'Lahore' is not among the 97 districts of Sindh, Balochistan and Khyber Pakhtunkhwa in the NIH IDSR district tables (Punjab and Islamabad districts are reported as NR), so there are no counts for it",
+      "statement_ok": null
     },
     {
       "id": "idk-deaths",
@@ -188,7 +202,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": "deaths: the IDSR district tables count suspected cases only, not deaths; ask the provincial health department for mortality figures"
+      "missing": "deaths: the IDSR district tables count suspected cases only, not deaths; ask the provincial health department for mortality figures",
+      "statement_ok": null
     },
     {
       "id": "idk-gdp",
@@ -201,7 +216,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": "the question is outside this system's scope (malaria/dengue surveillance and official prevention guidance)"
+      "missing": "the question is outside this system's scope (malaria/dengue surveillance and official prevention guidance)",
+      "statement_ok": null
     },
     {
       "id": "idk-cricket",
@@ -214,7 +230,8 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "",
-      "missing": "the question is outside this system's scope (malaria/dengue surveillance and official prevention guidance)"
+      "missing": "the question is outside this system's scope (malaria/dengue surveillance and official prevention guidance)",
+      "statement_ok": null
     },
     {
       "id": "model-accuracy",
@@ -227,7 +244,78 @@
       "numbers": 0,
       "numbers_faithful": 0,
       "cited": "MODEL-CARD-malaria;MODEL-CARD-malaria;MODEL-CARD-malaria",
-      "missing": ""
+      "missing": "",
+      "statement_ok": null
+    },
+    {
+      "id": "outbreak-sanghar",
+      "lang": "en",
+      "expect": "answer",
+      "got": "answer",
+      "refusal_correct": true,
+      "citation_ok": null,
+      "numbers_needed": true,
+      "numbers": 6,
+      "numbers_faithful": 6,
+      "cited": "",
+      "missing": "",
+      "statement_ok": true
+    },
+    {
+      "id": "scope-beds",
+      "lang": "en",
+      "expect": "dont_know",
+      "got": "dont_know",
+      "refusal_correct": true,
+      "citation_ok": null,
+      "numbers_needed": false,
+      "numbers": 0,
+      "numbers_faithful": 0,
+      "cited": "",
+      "missing": "hospital beds, medicine stocks and fumigation needs are not in this system's data (NIH IDSR bulletins count suspected cases only); ask the district health office or the provincial health department",
+      "statement_ok": true
+    },
+    {
+      "id": "scope-medicine",
+      "lang": "en",
+      "expect": "dont_know",
+      "got": "dont_know",
+      "refusal_correct": true,
+      "citation_ok": null,
+      "numbers_needed": false,
+      "numbers": 0,
+      "numbers_faithful": 0,
+      "cited": "",
+      "missing": "hospital beds, medicine stocks and fumigation needs are not in this system's data (NIH IDSR bulletins count suspected cases only); ask the district health office or the provincial health department",
+      "statement_ok": null
+    },
+    {
+      "id": "scope-fumigation",
+      "lang": "en",
+      "expect": "dont_know",
+      "got": "dont_know",
+      "refusal_correct": true,
+      "citation_ok": null,
+      "numbers_needed": false,
+      "numbers": 0,
+      "numbers_faithful": 0,
+      "cited": "",
+      "missing": "hospital beds, medicine stocks and fumigation needs are not in this system's data (NIH IDSR bulletins count suspected cases only); ask the district health office or the provincial health department",
+      "statement_ok": null
+    },
+    {
+      "id": "place-karachi",
+      "lang": "en",
+      "expect": "dont_know",
+      "got": "dont_know",
+      "refusal_correct": true,
+      "citation_ok": null,
+      "numbers_needed": false,
+      "numbers": 0,
+      "numbers_faithful": 0,
+      "cited": "",
+      "missing": "'Karachi' is not one district in the NIH IDSR tables; it is reported as Central Karachi, East Karachi, Korangi Karachi, Malir Karachi, South Karachi, West Karachi. Please ask about one of these",
+      "statement_ok": true
     }
   ]
 }

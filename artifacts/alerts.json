@@ -1,12 +1,12 @@
 {
-  "updated_utc": "2026-10-20T14:18:31+00:00",
+  "updated_utc": "2026-10-21T05:16:54+00:00",
   "active": [
     {
       "level": "warning",
       "kind": "stale_source",
-      "text": "nih_idsr is late: newest data 2026-09-28 (542 h old, limit 336 h).",
-      "run_id": "20261020T141626-2b4f26",
-      "at_utc": "2026-10-20T14:18:31+00:00"
+      "text": "nih_idsr is late: newest data 2026-09-28 (557 h old, limit 336 h).",
+      "run_id": "20261021T051556-82a028",
+      "at_utc": "2026-10-21T05:16:54+00:00"
     }
   ]
 }

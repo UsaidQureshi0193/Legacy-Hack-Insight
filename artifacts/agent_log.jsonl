@@ -1,2 +1,3 @@
 {"at_utc": "2026-10-20T14:34:51+00:00", "question": "Which districts in Sindh have the highest malaria risk next week?", "status": "answered", "pii_masked": [], "prompt_version": "insight_wording_v1", "wording": "template"}
 {"at_utc": "2026-10-20T14:38:43+00:00", "question": "Which districts will have the highest malaria cases next week?", "status": "answered", "pii_masked": [], "prompt_version": "insight_wording_v1", "wording": "template"}
+{"at_utc": "2026-10-20T19:17:54+00:00", "question": "Which districts will have the highest malaria cases next week?", "status": "answered", "pii_masked": [], "prompt_version": "insight_wording_v1", "wording": "template"}

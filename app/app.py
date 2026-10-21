@@ -1057,5 +1057,16 @@ with gr.Blocks(title="SehatSignal AI · Malaria & Dengue Early Warning") as demo
               </ul><div class="emergency">⚕ In an emergency go to the nearest hospital or call <b>Rescue 1122</b>.</div>
               <p class="ur">یہ صرف معلومات ہیں، طبی مشورہ نہیں۔ ہنگامی صورت میں قریبی ہسپتال جائیں یا 1122 پر کال کریں۔</p></div>""")
 
+# if __name__ == "__main__":
+#     demo.launch(theme=THEME, css=CSS, head=HEAD, server_name=os.environ.get("HOST", "127.0.0.1"))
+
+
+app = demo
+
 if __name__ == "__main__":
-    demo.launch(theme=THEME, css=CSS, head=HEAD, server_name=os.environ.get("HOST", "127.0.0.1"))
+    demo.launch(
+        theme=THEME,
+        css=CSS,
+        head=HEAD,
+        server_name=os.environ.get("HOST", "127.0.0.1")
+    )

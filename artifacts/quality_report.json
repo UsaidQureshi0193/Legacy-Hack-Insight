@@ -1,10 +1,10 @@
 {
-  "run_id": "20261020T141626-2b4f26",
+  "run_id": "20261021T051556-82a028",
   "status": "pass",
   "counts": {
     "FLAG": 16,
-    "PASS": 8,
-    "FIX": 6,
+    "PASS": 9,
+    "FIX": 7,
     "FILL": 1
   },
   "decisions": [
@@ -19,8 +19,8 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "85ccfacd06a5",
-      "ts_utc": "2026-10-20T14:17:19+00:00"
+      "decision_id": "f59f050a0518",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
     },
     {
       "gate": "gate0",
@@ -33,8 +33,8 @@
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "301507c8f9b9",
-      "ts_utc": "2026-10-20T14:17:19+00:00"
+      "decision_id": "6988fbde5bd2",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
     },
     {
       "gate": "gate0",
@@ -47,8 +47,8 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "d3593fb63b75",
-      "ts_utc": "2026-10-20T14:17:19+00:00"
+      "decision_id": "66e2b5966be7",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
     },
     {
       "gate": "gate0",
@@ -61,8 +61,8 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "693ceda0c235",
-      "ts_utc": "2026-10-20T14:17:19+00:00"
+      "decision_id": "77a32210af5f",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
     },
     {
       "gate": "gate0",
@@ -75,8 +75,28 @@
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "198024237ed4",
-      "ts_utc": "2026-10-20T14:17:19+00:00"
+      "decision_id": "5b7d8b403aa9",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
+    },
+    {
+      "gate": "gate0",
+      "check": "manifest_snapshots",
+      "rule": "MANIFEST-SNAPSHOT",
+      "action": "FLAG",
+      "table": "raw",
+      "rows_affected": 44,
+      "explanation": "Raw files in manifest.csv are not on this machine and cannot be fetched again now: dated NIH listing snapshots (the bulletin PDFs themselves are verified) or Open-Meteo chunks deferred by the API budget (fetched by later runs). Built from the verified files only.",
+      "sample": [
+        "missing: data/raw/nih_idsr/listings/listing_20261019T1837.html",
+        "missing: data/raw/nih_idsr/listings/listing_20261019T1908.html",
+        "missing: data/raw/nih_idsr/listings/listing_20261019T1932.html",
+        "missing: data/raw/nih_idsr/listings/listing_20261020T0730.html",
+        "missing: data/raw/nih_idsr/listings/listing_20261020T0927.html"
+      ],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "f4c2990d2380",
+      "ts_utc": "2026-10-21T05:16:15+00:00"
     },
     {
       "gate": "gate1",
@@ -93,8 +113,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "2869e4a022bc",
-      "ts_utc": "2026-10-20T14:17:43+00:00"
+      "decision_id": "6a57d66153fa",
+      "ts_utc": "2026-10-21T05:16:36+00:00"
     },
     {
       "gate": "gate1",
@@ -111,8 +131,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "b83369eb9e75",
-      "ts_utc": "2026-10-20T14:17:43+00:00"
+      "decision_id": "96a4468af5a5",
+      "ts_utc": "2026-10-21T05:16:36+00:00"
     },
     {
       "gate": "gate1",
@@ -121,12 +141,12 @@
       "action": "FLAG",
       "table": "cleaned.idsr_cases",
       "rows_affected": 8992,
-      "explanation": "8992 cells say 'NR' (area did not report that week), mostly {'Balochistan': 5217, 'Punjab': 3108, 'Azad Kashmir': 396, 'Khyber Pakhtunkhwa': 264, 'UNKNOWN:Baluchistan': 7}. Kept as missing, NOT zero - a zero would tell the model that no one fell ill.",
+      "explanation": "8992 cells say 'NR' (area did not report that week), mostly {'Balochistan': 5224, 'Punjab': 3108, 'Azad Kashmir': 396, 'Khyber Pakhtunkhwa': 264}. Kept as missing, NOT zero - a zero would tell the model that no one fell ill.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "1bc41e52ef8b",
-      "ts_utc": "2026-10-20T14:17:43+00:00"
+      "decision_id": "08c6e0b30a2a",
+      "ts_utc": "2026-10-21T05:16:36+00:00"
     },
     {
       "gate": "gate1",
@@ -145,8 +165,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "d0f6641ccc1e",
-      "ts_utc": "2026-10-20T14:17:43+00:00"
+      "decision_id": "90d9bfd2362c",
+      "ts_utc": "2026-10-21T05:16:36+00:00"
     },
     {
       "gate": "gate1",
@@ -162,24 +182,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "a959a9d79d59",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
-    },
-    {
-      "gate": "gate1",
-      "check": "province_unknown",
-      "rule": "IDSR-R5",
-      "action": "FLAG",
-      "table": "cleaned.idsr_cases",
-      "rows_affected": 330,
-      "explanation": "Table title did not name a known province; rows excluded from gold.",
-      "sample": [
-        "UNKNOWN:Baluchistan"
-      ],
-      "risk": "low",
-      "status": "applied",
-      "decision_id": "7aa37cd40b68",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
+      "decision_id": "68ce567f9c33",
+      "ts_utc": "2026-10-21T05:16:36+00:00"
     },
     {
       "gate": "gate1",
@@ -243,8 +247,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "ee6e29881103",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
+      "decision_id": "b6578fa36562",
+      "ts_utc": "2026-10-21T05:16:37+00:00"
     },
     {
       "gate": "gate1",
@@ -263,8 +267,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "d893433a6bef",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
+      "decision_id": "b2816eb78f03",
+      "ts_utc": "2026-10-21T05:16:37+00:00"
     },
     {
       "gate": "gate1",
@@ -283,8 +287,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "aff094e2ef0d",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
+      "decision_id": "cc4530ae1154",
+      "ts_utc": "2026-10-21T05:16:37+00:00"
     },
     {
       "gate": "gate1",
@@ -293,12 +297,12 @@
       "action": "PASS",
       "table": "cleaned.idsr_cases",
       "rows_affected": 0,
-      "explanation": "pandera schema passed on 203895 rows.",
+      "explanation": "pandera schema passed on 204225 rows.",
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "313b10ea4ddc",
-      "ts_utc": "2026-10-20T14:17:44+00:00"
+      "decision_id": "d8b5c027c35e",
+      "ts_utc": "2026-10-21T05:16:37+00:00"
     },
     {
       "gate": "gate1",
@@ -362,8 +366,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "732ff85c73f8",
-      "ts_utc": "2026-10-20T14:17:46+00:00"
+      "decision_id": "be6398538ce5",
+      "ts_utc": "2026-10-21T05:16:39+00:00"
     },
     {
       "gate": "gate1",
@@ -392,8 +396,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "4b316aa660ac",
-      "ts_utc": "2026-10-20T14:17:46+00:00"
+      "decision_id": "45dc703b0df4",
+      "ts_utc": "2026-10-21T05:16:39+00:00"
     },
     {
       "gate": "gate1",
@@ -401,27 +405,52 @@
       "rule": "QUARANTINE",
       "action": "FLAG",
       "table": "quarantine.idsr_rows",
-      "rows_affected": 8149,
-      "explanation": "8149 rows could not enter gold and were moved to quarantine.idsr_rows with their reason (never dropped silently): {'GEO-M1 district name not matched to an OCHA pcode': 7819, 'IDSR-R5 province not readable': 330}.",
+      "rows_affected": 7849,
+      "explanation": "7849 rows could not enter gold and were moved to quarantine.idsr_rows with their reason (never dropped silently): {'GEO-M1 district name not matched to an OCHA pcode': 7849}.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "aaca7b8773d9",
-      "ts_utc": "2026-10-20T14:17:47+00:00"
+      "decision_id": "bf6d8b9b69ed",
+      "ts_utc": "2026-10-21T05:16:39+00:00"
     },
     {
       "gate": "gate1",
-      "check": "population_schema",
-      "rule": "POP-P1",
-      "action": "FLAG",
+      "check": "population_match",
+      "rule": "POP-P4",
+      "action": "PASS",
       "table": "cleaned.districts",
-      "rows_affected": 0,
-      "explanation": "Population sheet has no recognisable pcode/total column; per-100k rates disabled.",
+      "rows_affected": 120,
+      "explanation": "2017 census population joined to 120 districts by name within province (exact 115, fuzzy 3, alias 2); pcodes are not comparable between the files.",
       "sample": [],
       "risk": "low",
+      "status": "info",
+      "decision_id": "c05fd2d3a106",
+      "ts_utc": "2026-10-21T05:16:42+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "population_missing",
+      "rule": "POP-P2",
+      "action": "FLAG",
+      "table": "cleaned.districts",
+      "rows_affected": 40,
+      "explanation": "40 districts (mostly created after the 2017 census) have no 2017 population; their per-100k rate is left missing rather than estimated.",
+      "sample": [
+        "Bagh",
+        "Bhimber",
+        "Jhelum Valley",
+        "Haveli",
+        "Kotli",
+        "Mirpur",
+        "Muzaffarabad",
+        "Neelum",
+        "Poonch",
+        "Sudhnoti"
+      ],
+      "risk": "low",
       "status": "applied",
-      "decision_id": "28e7ce90ede6",
-      "ts_utc": "2026-10-20T14:17:49+00:00"
+      "decision_id": "80ee5d01f083",
+      "ts_utc": "2026-10-21T05:16:42+00:00"
     },
     {
       "gate": "gate1",
@@ -434,8 +463,22 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "1799e48b24ad",
-      "ts_utc": "2026-10-20T14:17:53+00:00"
+      "decision_id": "cf8e1d5d7c1e",
+      "ts_utc": "2026-10-21T05:16:42+00:00"
+    },
+    {
+      "gate": "gate1",
+      "check": "overlap_duplicates",
+      "rule": "WX-W2",
+      "action": "FIX",
+      "table": "cleaned.weather_hourly",
+      "rows_affected": 30264,
+      "explanation": "30264 hourly rows exist in both archive and forecast (or several forecast runs). Kept archive first, otherwise the newest forecast run. Certain: same hour, same place, better source.",
+      "sample": [],
+      "risk": "low",
+      "status": "applied",
+      "decision_id": "a4aebe146c0c",
+      "ts_utc": "2026-10-21T05:16:43+00:00"
     },
     {
       "gate": "gate1",
@@ -457,8 +500,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "81e27947ffb2",
-      "ts_utc": "2026-10-20T14:18:00+00:00"
+      "decision_id": "38685dbadde8",
+      "ts_utc": "2026-10-21T05:16:43+00:00"
     },
     {
       "gate": "gate1",
@@ -466,34 +509,34 @@
       "rule": "WX-W3",
       "action": "FLAG",
       "table": "cleaned.weather_hourly",
-      "rows_affected": 1170840,
-      "explanation": "1170840 hourly values are in gaps longer than 3 hours; left missing, weekly aggregates report how many hours they are based on.",
+      "rows_affected": 731520,
+      "explanation": "731520 hourly values are in gaps longer than 3 hours; left missing, weekly aggregates report how many hours they are based on.",
       "sample": [
         {
           "district_id": "PK201",
-          "missing_hours": 15600
+          "missing_hours": 24384
         },
         {
           "district_id": "PK202",
-          "missing_hours": 15600
+          "missing_hours": 24384
         },
         {
           "district_id": "PK203",
-          "missing_hours": 15600
+          "missing_hours": 24384
         },
         {
           "district_id": "PK204",
-          "missing_hours": 15600
+          "missing_hours": 24384
         },
         {
           "district_id": "PK205",
-          "missing_hours": 15600
+          "missing_hours": 24384
         }
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "9c882e894453",
-      "ts_utc": "2026-10-20T14:18:08+00:00"
+      "decision_id": "ea56412b955c",
+      "ts_utc": "2026-10-21T05:16:46+00:00"
     },
     {
       "gate": "gate2",
@@ -539,8 +582,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "89721f19bd95",
-      "ts_utc": "2026-10-20T14:18:25+00:00"
+      "decision_id": "41bcd335b66c",
+      "ts_utc": "2026-10-21T05:16:50+00:00"
     },
     {
       "gate": "gate1",
@@ -584,8 +627,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "bde78076048c",
-      "ts_utc": "2026-10-20T14:18:26+00:00"
+      "decision_id": "4e334c0f3c3e",
+      "ts_utc": "2026-10-21T05:16:51+00:00"
     },
     {
       "gate": "gate2",
@@ -598,8 +641,8 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "24fdb04960ae",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "52b50a3fc2a0",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -607,13 +650,13 @@
       "rule": "GOLD-G1",
       "action": "FLAG",
       "table": "gold.district_week",
-      "rows_affected": 13618,
-      "explanation": "13618 district-weeks have no value because the bulletin only prints each province's most frequent diseases that week ({'dengue': 13562, 'malaria': 56}). Kept missing: 'not in the top list' does not mean zero cases.",
+      "rows_affected": 13647,
+      "explanation": "13647 district-weeks have no value because the bulletin only prints each province's most frequent diseases that week ({'dengue': 13591, 'malaria': 56}). Kept missing: 'not in the top list' does not mean zero cases.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "eb2acadde7cc",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "a08889067334",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -621,13 +664,13 @@
       "rule": "GOLD-G2",
       "action": "FLAG",
       "table": "gold.district_week",
-      "rows_affected": 2910,
-      "explanation": "28 weeks have no usable bulletin (not published, or 2021-22 layout). Left missing; never interpolated for the target.",
+      "rows_affected": 2844,
+      "explanation": "27 weeks have no usable bulletin (not published, or 2021-22 layout). Left missing; never interpolated for the target.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "c274173a2520",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "efa86e53bdba",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -635,13 +678,13 @@
       "rule": "GOLD-G3",
       "action": "FILL",
       "table": "gold.district_week",
-      "rows_affected": 1292,
-      "explanation": "1292 single-week gaps were linearly interpolated ONLY in cases_for_features (used to build lag features). The target column `cases` stays missing and those weeks are never scored.",
+      "rows_affected": 1272,
+      "explanation": "1272 single-week gaps were linearly interpolated ONLY in cases_for_features (used to build lag features). The target column `cases` stays missing and those weeks are never scored.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "d4dd50167f64",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "f73723e68c21",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -650,7 +693,7 @@
       "action": "FLAG",
       "table": "gold.district_week",
       "rows_affected": 174,
-      "explanation": "Checked 4828 province-week totals against the sum of their districts; 174 differ by more than 2% (often a district missing from the table).",
+      "explanation": "Checked 4838 province-week totals against the sum of their districts; 174 differ by more than 2% (often a district missing from the table).",
       "sample": [
         {
           "province": "Sindh",
@@ -700,8 +743,8 @@
       ],
       "risk": "low",
       "status": "applied",
-      "decision_id": "bcc64a8c3977",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "77ecdc65f4e7",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -710,12 +753,12 @@
       "action": "FLAG",
       "table": "nih_idsr",
       "rows_affected": 0,
-      "explanation": "Source nih_idsr is late: newest data 2026-09-28 is 542 h old (allowed 336 h). Dashboard shows it as stale.",
+      "explanation": "Source nih_idsr is late: newest data 2026-09-28 is 557 h old (allowed 336 h). Dashboard shows it as stale.",
       "sample": [],
       "risk": "low",
       "status": "applied",
-      "decision_id": "ca55aefc8d5e",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "329f2936d142",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     },
     {
       "gate": "gate2",
@@ -728,8 +771,8 @@
       "sample": [],
       "risk": "low",
       "status": "info",
-      "decision_id": "1a785f03dbb7",
-      "ts_utc": "2026-10-20T14:18:28+00:00"
+      "decision_id": "604b32f973ad",
+      "ts_utc": "2026-10-21T05:16:53+00:00"
     }
   ]
 }
