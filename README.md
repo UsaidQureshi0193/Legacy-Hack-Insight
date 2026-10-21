@@ -1,7 +1,8 @@
 # HackInsight 2026 · Malaria & Dengue Early Warning for Pakistani Districts
 
-**Track:** Public health. **Primary user:** district health officer (Sindh, Balochistan, Khyber Pakhtunkhwa).
-**Decision:** where to send RDT kits, antimalarials, beds and fumigation teams next week.
+**Team:** Legacy. **Track:** Public health. **Primary user:** district health officer (Sindh, Balochistan, Khyber Pakhtunkhwa).
+**Decision:** which districts to prioritise next week for further investigation, surveillance and resource planning
+(supplies and vector control are then planned through official programme channels; we do not claim stock or capacity needs).
 
 ```
 NIH IDSR PDFs ─┐
@@ -24,12 +25,18 @@ make test      # unit tests
 Ask the agent from the terminal: `python -m hackinsight.cli ask "Which districts in Sindh have the highest malaria risk next week?"`
 (`--lang ur` for Urdu).
 
+## Dataset Declaration
+* **Official declaration (committed before Mon 19 Oct 2026, 12:00 PM PKT):** _ADD LINK to the original repo commit or
+  form submission here._ Its declared baseline: next week = this week (last value), MAE on a time-based test period.
+* `docs/datasetproposal.pdf` in this repo is a **later, regenerated** proposal: it quotes volumes measured after the data
+  was fetched (from Mon 19 Oct, 11:35 PM PKT). It is kept unchanged as documentation and is not the timed declaration.
+
 ## Data sources
 | # | Source | Publisher | Licence / terms | Role |
 |---|---|---|---|---|
 | 1 | IDSR weekly Public Health Bulletins (PDF), 2021–2026 | National Institute of Health, Islamabad | Public government reports; robots.txt allows all | Target: suspected cases by district & week (**not on the track list**) |
 | 2 | Historical (ERA5) + forecast hourly weather, from 2023 | Open-Meteo | CC BY 4.0; free tier non-commercial; a call ledger keeps every run under 90% of the minute/hour/day limits | Rain, humidity, temperature features |
-| 3 | OpenDengue v1.3 | Clarke et al. 2024, Figshare | CC BY 4.0 | Benchmark history, local validation |
+| 3 | OpenDengue v1.3 | Clarke et al. 2024, Figshare | CC BY 4.0 | Dengue history; checks our PDF parsing (its Pakistan rows come from the same national reports, so it is not an independent source) |
 | 4 | Admin boundaries + centroids, 2017 census population, MPI | OCHA / PBS / OPHI via HDX | CC BY-IGO, CC0 | District ids, per-100k, poverty groups |
 | 5 | Advisories & guidelines, fact sheets | NIH Pakistan, WHO | Public / attribution | Insight Agent library |
 
@@ -52,7 +59,7 @@ Every raw file is listed in `manifest.csv` (source, query, fetch time, SHA-256, 
 **Data:** 203,895 IDSR cells from 177 bulletins; gold = 34,920 district-disease-weeks for 97 districts
 (15,876 with a reported count); 250 raw files in the manifest. Quality gate: PASS (FIX 6, FILL 1, FLAG 14).
 
-**Malaria, next-week suspected cases** (test target weeks 2025-10-06 → 2026-09-21, 4,274 district-weeks, scored once):
+**Malaria, next-week suspected cases** (test target weeks 2025-10-06 → 2026-09-21, 4,274 district-weeks; scored once per training run and never used to choose):
 
 | | Declared baseline (last value) | LightGBM quantile median |
 |---|---|---|

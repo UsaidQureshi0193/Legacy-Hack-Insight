@@ -23,7 +23,8 @@ L = {
            "idk": "I don't know", "why": "Why not", "audit": "Audit details (ids to check every number)",
            "status": "Data status", "baseline": ("How this number is made: last week's reported count is used as the "
                                                  "estimate for next week, because our model was not more accurate "
-                                                 "on past data. That is why there is no range."),
+                                                 "on past data. The range shows how far that rule missed in "
+                                                 "8 of 10 past weeks."),
            "model": "How this number is made: the model's middle estimate; the range covered 8 in 10 past weeks.",
            "emergency": ("This is information, not medical advice. If someone has high fever with bleeding, severe "
                          "stomach pain, repeated vomiting or drowsiness, go to the nearest hospital now or call "
@@ -35,7 +36,7 @@ L = {
            "guidance": "سرکاری رہنمائی کیا کہتی ہے", "sources": "حوالہ شدہ دستاویزات", "idk": "مجھے معلوم نہیں",
            "why": "وجہ", "audit": "آڈٹ تفصیلات (ہر عدد کی جانچ کے لیے آئی ڈیز)", "status": "ڈیٹا کی صورتحال",
            "baseline": ("یہ عدد کیسے بنا: پچھلے ہفتے کی رپورٹ کو اگلے ہفتے کا اندازہ مانا گیا ہے، کیونکہ ہمارا ماڈل "
-                        "ماضی کے ڈیٹا پر زیادہ درست نہیں تھا۔ اسی لیے حد نہیں دی گئی۔"),
+                        "ماضی کے ڈیٹا پر زیادہ درست نہیں تھا۔ حد بتاتی ہے کہ ماضی کے 10 میں سے 8 ہفتوں میں یہ اندازہ کتنا ہٹا۔"),
            "model": "یہ عدد کیسے بنا: ماڈل کا درمیانی اندازہ؛ حد ماضی کے 10 میں سے 8 ہفتوں کا احاطہ کرتی تھی۔",
            "emergency": ("یہ معلومات ہیں، طبی مشورہ نہیں۔ اگر کسی کو تیز بخار کے ساتھ خون آنا، پیٹ میں شدید درد، بار بار قے "
                          "یا غنودگی ہو تو فوراً قریبی ہسپتال جائیں یا ریسکیو 1122 پر کال کریں۔"),
@@ -123,11 +124,14 @@ def answer_card(d: dict, title: str | None = None, review: str | None = None) ->
                             f"({'late' if v['late'] else 'on time'})</li>" for k, v in b["freshness"].items())
             parts.append(f'<h4>{t["status"]}</h4><ul class="lat">{items}<li>last successful run: '
                          f'{html.escape(str(b.get("last_good") or "")[:16].replace("T", " "))} UTC</li></ul>')
+        elif b["type"] == "note":
+            parts.append(f'<div class="how"><b>ⓘ</b> {html.escape(b["text"])}</div>')
         elif b["type"] == "guidance":
             cards = "".join(
                 f'<div class="quote"><div class="q-text">“{html.escape(g["quote"])}”</div>'
                 f'<div class="q-src">— <a href="{html.escape(g["url"])}" target="_blank" rel="noopener">'
-                f'{html.escape(g["title"])}</a>, {t["page"]} {g["page"]}</div></div>' for g in b["items"])
+                f'{html.escape(g["title"])}</a>' + (f' · {html.escape(g["publisher"])}' if g.get("publisher") else "")
+                + f', {t["page"]} {g["page"]}</div></div>' for g in b["items"])
             parts.append(f'<h4>{t["guidance"]}</h4><div class="lat">{cards}</div>')
     if audit:
         lis = "".join(f"<li>{html.escape(x)}</li>" for x in audit)

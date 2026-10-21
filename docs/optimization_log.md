@@ -5,26 +5,26 @@ Decisions use the validation period only; the test set is scored once in `make t
 ## Change 1: Add weather features (rain, humidity, temperature, lags 0-3 weeks)
 | | val MAE | seconds | memory delta MB | features |
 |---|---|---|---|---|
-| before | 128.33 | 4.5 | 20.0 | 13 |
-| after | 127.42 | 7.2 | 43.4 | 33 |
-| baseline | 127.33 | | | |
-**Kept:** yes - kept if validation MAE does not get worse
+| before | 125.86 | 11.4 | 23.8 | 13 |
+| after | 126.49 | 15.2 | 45.0 | 33 |
+| baseline | 126.65 | | | |
+**Kept:** no - kept if validation MAE does not get worse
 
 ## Change 2: Tuning grid: 6 settings -> 1 setting (num_leaves=7)
 | | val MAE | seconds | memory delta MB | features |
 |---|---|---|---|---|
-| before | 127.42 | 7.2 | 43.4 | 33 |
-| after | 129.51 | 4.7 | 23.4 | 33 |
-| baseline | 127.33 | | | |
+| before | 126.49 | 15.2 | 45.0 | 33 |
+| after | 128.84 | 10.3 | 31.9 | 33 |
+| baseline | 126.65 | | | |
 **Kept:** no - kept only if accuracy within 1% while saving time
 
 ## Change 3: PDF parsing: process pool instead of one process
 ```json
 {
   "bulletins": 12,
-  "seq_seconds": 85.0,
-  "parallel_seconds": 39.2,
-  "workers": 7,
+  "seq_seconds": 178.1,
+  "parallel_seconds": 56.2,
+  "workers": 8,
   "same_rows": true,
   "rows": 15170
 }
@@ -35,14 +35,16 @@ Decisions use the validation period only; the test set is scored once in `make t
 ```json
 {
   "last_run_mode": "incremental",
-  "last_run_seconds": 52.1,
+  "last_run_seconds": 57.6,
   "steps": {
     "verify_raw": null,
-    "fetch": 1.4,
-    "extract": 2.3,
-    "weather": 0.1,
-    "cleaned": 27.1,
-    "gold": 3.4
+    "gate0": null,
+    "fetch": 4.5,
+    "extract": 6.8,
+    "weather": 0.0,
+    "cleaned": 33.9,
+    "gold": 4.4,
+    "local_validation": null
   }
 }
 ```
@@ -51,9 +53,17 @@ Decisions use the validation period only; the test set is scored once in `make t
 ## Change 5: Cache sentence embeddings by chunk hash
 ```json
 {
-  "chunks": 113,
-  "cold_seconds": 41.9,
-  "warm_seconds": 9.0
+  "chunks": 119,
+  "cold_seconds": 2535.9,
+  "warm_seconds": 10.5
 }
 ```
 **Kept:** yes - re-index after a new bulletin only embeds new chunks
+
+## Reliability checks
+- Same seed (42) trained twice: validation MAE 126.49 and 126.49 (identical).
+- Every change above is compared on the same time-based split (validation from 2025-01-01, test from 2025-10-01); decisions use validation only.
+- Errors by group for the served model are in `artifacts/model_*/metrics.json` and the model card.
+
+## Trade-off in two sentences
+Weather features cost 3.8 s more training and +21 MB of memory for a validation MAE of 126.49 instead of 125.86, so we dropped them. A smaller tuning grid would save 4.9 s but moves validation MAE to 128.84, so we rejected it: accuracy for the officer matters more than seconds in an hourly job.

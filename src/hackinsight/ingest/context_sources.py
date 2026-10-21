@@ -68,7 +68,10 @@ def load_adm2() -> pd.DataFrame:
 def load_population() -> pd.DataFrame:
     path = FILES["hdx_population"][1]
     xl = pd.ExcelFile(path)
-    sheet = next((s for s in xl.sheet_names if "adm2" in s.lower()), xl.sheet_names[-1])
+    # the COD-PS workbook names its district sheet "Admin2" (not "adm2"); never fall back to tehsils
+    sheet = next((s for s in xl.sheet_names if s.lower().replace("admin", "adm") == "adm2"), None)
+    if sheet is None:
+        sheet = next((s for s in xl.sheet_names if "adm2" in s.lower().replace("admin", "adm")), xl.sheet_names[-1])
     df = xl.parse(sheet)
     df["source_file"] = Manifest.rel(path)
     return df

@@ -6,7 +6,7 @@ import pandas as pd
 import duckdb
 import pytest
 
-from hackinsight.ingest.parse_idsr import _join_split_names, disease_key
+from hackinsight.ingest.parse_idsr import _join_split_names, _province_from_title, disease_key
 from hackinsight.ingest.nih_idsr import parse_listing
 from hackinsight.quality.agent import DataQualityAgent
 from hackinsight.model import features
@@ -43,6 +43,14 @@ def test_disease_keys_normalise_pdf_line_breaks():
     assert disease_key("Typhoi\nd") == "typhoid"
     assert disease_key("AD (Non-\nCholera)") == "ad_non_cholera"
     assert disease_key("Malaria") == "malaria"
+
+
+def test_province_spelling_variants_are_recognised():
+    # real title from 2025_W28.pdf p.9: "Baluchistan" once lost a whole week of Balochistan districts
+    t = "Table 3: District wise distribution of most frequently reported suspected cases during Week 28, Baluchistan"
+    assert _province_from_title(t) == ["Balochistan"]
+    assert _province_from_title(t.replace("Baluchistan", "Sindh")) == ["Sindh"]
+    assert _province_from_title(t.replace("Baluchistan", "Atlantis"))[0].startswith("UNKNOWN")
 
 
 def test_listing_parser_uses_title_not_filename():
@@ -163,3 +171,17 @@ def test_pii_is_masked_before_logging():
     assert "0300" not in text and "35202" not in text and "ali@" not in text
     assert set(found) >= {"PHONE", "CNIC", "EMAIL"}
     assert mask("Which districts in Sindh?")[1] == []
+
+
+def test_baseline_range_brackets_the_last_value_and_never_goes_negative():
+    from hackinsight.model.train import baseline_range
+    lo, hi = baseline_range(pd.Series([0.0, 10.0, 1000.0]), -0.5, 0.4)
+    assert (lo >= 0).all() and (lo <= [0, 10, 1000]).all() and (hi >= [0, 10, 1000]).all()
+    assert hi[2] - lo[2] > hi[1] - lo[1]          # wider for bigger counts (log scale)
+
+
+def test_area_type_from_census_urban_share():
+    from hackinsight.warehouse.build import area_type
+    assert area_type(0.62) == "mostly urban"
+    assert area_type(0.18) == "mostly rural"
+    assert area_type(float("nan")) == "unknown"   # district created after 2017: no guess

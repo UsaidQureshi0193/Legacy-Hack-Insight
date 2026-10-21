@@ -67,12 +67,48 @@ class _Text(HTMLParser):
             self.parts.append(data)
 
 
+OCR_CACHE = config.DATA / "cache" / "ocr"
+_ocr = None
+
+
+def _ocr_page(page, key: str) -> str:
+    """Text of a SCANNED page (an image with no text layer), read with RapidOCR - a pip package, no
+    system install, so `make setup` is enough on any machine. Cached by file SHA-256 + page, so each
+    file version is read once. Returns "" when OCR is not installed (the page is then skipped)."""
+    global _ocr
+    cached = OCR_CACHE / f"{key}.txt"
+    if cached.exists():
+        return cached.read_text(encoding="utf-8")
+    try:
+        import numpy as np
+        from rapidocr_onnxruntime import RapidOCR
+    except ImportError:
+        return ""
+    if _ocr is None:
+        _ocr = RapidOCR()
+    img = page.to_image(resolution=200).original.convert("RGB")
+    result, _ = _ocr(np.array(img))
+    text = "\n".join(r[1] for r in (result or []))
+    OCR_CACHE.mkdir(parents=True, exist_ok=True)
+    cached.write_text(text, encoding="utf-8")
+    return text
+
+
 def pages(row) -> list[tuple[int, str]]:
-    """Return [(page_number, text)] for a library document. HTML counts as one 'page'."""
+    """Return [(page_number, text)] for a library document. HTML counts as one 'page'.
+    PDF pages without a text layer (scanned advisories) are read with OCR."""
     dest = _dest(row)
     if row.kind == "pdf":
+        from ..manifest import sha256_of
+        sha = sha256_of(dest)[:16]
+        out = []
         with pdfplumber.open(dest) as pdf:
-            return [(i + 1, p.extract_text() or "") for i, p in enumerate(pdf.pages)]
+            for i, p in enumerate(pdf.pages):
+                text = p.extract_text() or ""
+                if len(text.strip()) < 20 and p.images:
+                    text = _ocr_page(p, f"{sha}_p{i + 1}")
+                out.append((i + 1, text))
+        return out
     p = _Text()
     p.feed(dest.read_text(encoding="utf-8", errors="replace"))
     text = re.sub(r"\n\s*\n+", "\n\n", "".join(p.parts))

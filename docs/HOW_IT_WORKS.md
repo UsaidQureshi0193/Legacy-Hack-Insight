@@ -10,7 +10,7 @@ Numbers 20 Oct 2026 ki run ke hain (`artifacts/*.json`). Naye run ke baad file k
 **Kaise:** `docs/problem_analysis.md` (7 steps + PDF ke worksheet ke saare jawab).
 **Outcome:**
 - User: Sindh, Balochistan, KP ka district health officer.
-- Decision: RDT kits, dawai, beds aur fumigation teams agle hafte kahan bhejni hain.
+- Decision: agle hafte kin districts ko investigation, surveillance aur resource planning ke liye pehle dekhna hai.
 - Evidence: Week 39 2026 mein Pakistan mein 79,781 suspected malaria cases, jin mein Sindh 67,795 (`2026_W39.pdf` p.5).
 - KPI: next-week MAE vs baseline, 80% range coverage, aur agent ke liye refusal, citation aur number accuracy.
 
@@ -63,7 +63,8 @@ log hota hai, haath se nahi.
 - **Human-in-the-loop:** jo FIX table ki 5% se zyada rows badle, woh `hi approve` ke baghair apply nahi hota.
 
 **Outcome:** 203,895 IDSR cells; 2.9 million hourly weather rows; gold mein 34,920 rows (97 districts); quality gate
-PASS. Local validation: OpenDengue se 20 mein se 15 mahine exact match (r = 0.997).
+PASS. Extraction check: OpenDengue se 20 mein se 15 mahine exact match (r = 0.997). OpenDengue ka Pakistan data bhi
+WHO/MoH ke zariye usi national reporting se aata hai, is liye yeh hamari PDF parsing ko check karta hai, reports ko nahi.
 
 **Technology:**
 - **DuckDB:** ek file, server nahi, tez analytics. Guide yahi recommend karti hai.

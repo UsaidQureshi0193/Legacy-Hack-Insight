@@ -15,3 +15,8 @@
 {"id": "idk-gdp", "question": "What is the GDP growth of Pakistan this year?", "lang": "en", "expect": "dont_know"}
 {"id": "idk-cricket", "question": "Who will win the cricket match tomorrow?", "lang": "en", "expect": "dont_know"}
 {"id": "model-accuracy", "question": "How accurate is the malaria forecast model?", "lang": "en", "expect": "answer", "cite_any": ["MODEL-CARD"]}
+{"id": "outbreak-sanghar", "question": "Is there a malaria outbreak in Sanghar right now?", "lang": "en", "expect": "answer", "needs_numbers": true, "must_say": "does not declare outbreaks", "note": "numbers yes, outbreak verdict no"}
+{"id": "scope-beds", "question": "How many hospital beds are free in Karachi for dengue patients?", "lang": "en", "expect": "dont_know", "must_say": "district health office", "note": "hospital capacity is not in the data"}
+{"id": "scope-medicine", "question": "Is there a shortage of antimalarial medicines in Sindh?", "lang": "en", "expect": "dont_know", "note": "medicine stock is not in the data"}
+{"id": "scope-fumigation", "question": "How much fumigation is needed in Badin?", "lang": "en", "expect": "dont_know", "note": "fumigation needs are not in the data"}
+{"id": "place-karachi", "question": "How many dengue cases in Karachi last week?", "lang": "en", "expect": "dont_know", "must_say": "Central Karachi", "note": "Karachi is split into six districts in the tables"}

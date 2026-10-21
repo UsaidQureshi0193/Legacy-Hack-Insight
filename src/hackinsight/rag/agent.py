@@ -64,6 +64,31 @@ T = {
 }
 DISEASE_UR = {"malaria": "ملیریا", "dengue": "ڈینگی"}
 
+# Questions about things this system has no data on. Answering them would invent claims about
+# hospital capacity, medicine stocks or fumigation needs, so they get "I don't know" + where to ask.
+OUT_OF_SCOPE = re.compile(
+    r"\bbeds?\b|hospital capacity|\bicu\b|ventilator|occupancy|shortage|\bin stock\b|\bstocks?\b|\bsupplies\b|"
+    r"supply of|(?:medicine|drug)s? (?:available|availability)|availability of (?:medicine|drug)|"
+    r"(?:fumigat\w*|spray\w*|fogging)\b.*\b(?:need|needed|required|requirement|how many|how much)\b|"
+    r"\b(?:how many|how much)\b.*\b(?:fumigat\w*|spray\w*|fogging)|بستر")
+OUTBREAK = re.compile(r"outbreak|epidemic|وبا")
+NOTE = {
+    "en": {"outbreak": ("This system does not declare outbreaks: there is no validated outbreak threshold for these "
+                        "suspected-case counts. Whether there is an outbreak is decided by the provincial health "
+                        "department or NIH after investigation. The Priority screen lists districts that are rising or "
+                        "above their usual level for the season, which means 'look closer', not 'outbreak'."),
+           "scope": ("hospital beds, medicine stocks and fumigation needs are not in this system's data (NIH IDSR "
+                     "bulletins count suspected cases only); ask the district health office or the provincial health "
+                     "department")},
+    "ur": {"outbreak": ("یہ نظام وبا کا اعلان نہیں کرتا: ان مشتبہ کیسز کے لیے وبا کی کوئی تصدیق شدہ حد موجود نہیں۔ وبا ہے یا "
+                        "نہیں، یہ صوبائی محکمہ صحت یا این آئی ایچ تحقیق کے بعد طے کرتے ہیں۔ ترجیحی اضلاع کی فہرست کا مطلب "
+                        "'مزید دیکھیں' ہے، 'وبا' نہیں۔"),
+           "scope": ("ہسپتال کے بستر، ادویات کا ذخیرہ اور اسپرے کی ضرورت اس نظام کے ڈیٹا میں نہیں (این آئی ایچ بلیٹن صرف "
+                     "مشتبہ کیسز گنتے ہیں)؛ ضلعی محکمہ صحت یا صوبائی محکمہ صحت سے رابطہ کریں")},
+}
+STOP = {"the", "a", "an", "and", "or", "of", "in", "on", "for", "to", "what", "which", "how", "is", "are", "do", "does",
+        "should", "can", "i", "we", "my", "our", "this", "that", "with", "about", "there", "be", "it", "next", "week"}
+
 
 @dataclass
 class Answer:
@@ -89,7 +114,8 @@ class Answer:
                 out.append(f"{t['missing']}: " + "; ".join(self.missing))
         if self.citations:
             out.append(f"\n{t['sources']}:")
-            out += [f"  [{c['sid']}] {c['title']} - p.{c['page']} ({c['url']})" for c in self.citations]
+            out += [f"  [{c['sid']}] {c['title']} - {c.get('publisher', '')} - p.{c['page']} ({c['url']})"
+                    for c in self.citations]
         if self.numbers:
             out.append(f"{t['rows']}: " + ", ".join(sorted({n['row_id'] for n in self.numbers})))
         out.append("\n" + EMERGENCY[self.lang])
@@ -254,16 +280,25 @@ class InsightAgent:
         if "model" in intents and "next week" not in question.lower():
             intents = [i for i in intents if i != "forecast"]   # "how accurate is the forecast" is about the model
 
-        if p["unknown_place"] and not p["district"]:
-            a.status = "dont_know"
-            a.missing.append(f"'{p['unknown_place']}' is not among the districts in the NIH IDSR district tables "
-                             "(Punjab and Islamabad districts are not reported there), so there are no counts for it")
-            return a
         if re.search(r"\bdeath|\bdied|mortality|fatalit|اموات|ہلاک", question.lower()):
             a.status = "dont_know"
             a.missing.append("deaths: the IDSR district tables count suspected cases only, not deaths; "
                              "ask the provincial health department for mortality figures")
             return a
+        if OUT_OF_SCOPE.search(question.lower()):
+            a.status = "dont_know"
+            a.missing.append(NOTE[lang]["scope"])
+            return a
+        if p["unknown_place"] and not p["district"]:
+            a.status = "dont_know"
+            a.missing.append(self._unknown_place_reason(p["unknown_place"]))
+            return a
+        outbreak_q = bool(OUTBREAK.search(question.lower()))
+        if outbreak_q:
+            a.lines.append(NOTE[lang]["outbreak"])
+            a.blocks.append(dict(type="note", text=NOTE[lang]["outbreak"]))
+            if p["district"] and "history" not in intents:
+                intents = intents + ["history"]
         if not p["disease"] and ({"forecast", "history"} & set(intents)):
             a.lines.append(t["assume_d"].format(d=dname))
 
@@ -273,7 +308,7 @@ class InsightAgent:
                 a.lines.append(t["fc_head"].format(d=dname, w=fc["forecast_week"].iloc[0].date()))
                 if fc["method"].iloc[0] != "model_q50":
                     a.lines.append("  (the model did not beat the baseline for this disease on validation, so this is "
-                                   "the baseline: last reported week, no interval)")
+                                   "the baseline: last reported week; the range is how far that rule missed before)")
                 rows_out = []
                 for r in fc.itertuples():
                     tab = f"gold.forecast_{disease}"
@@ -322,7 +357,8 @@ class InsightAgent:
                             val = fmt(r.cases)
                         else:
                             val = t["missing_val"].format(s=r.cases_status)
-                        a.lines.append(f"  - {r.week_start.date()}: {val}  [{r.row_id}; {r.source_file} p.{r.page}]")
+                        pg = f" p.{int(r.page)}" if pd.notna(r.page) else ""
+                        a.lines.append(f"  - {r.week_start.date()}: {val}  [{r.row_id}; {r.source_file}{pg}]")
                     rep = [x for x in hb["rows"] if x["cases"] is not None]
                     if rep and not a.headline:
                         wk = pd.Timestamp(rep[0]["week"])
@@ -347,8 +383,8 @@ class InsightAgent:
         expansion = " ".join(v for k, v in UR_EXPAND.items() if k in question)
         query = guidance_query or f"{question} {expansion}".strip()
         on_topic = bool(set(re.findall(r"[a-z]+", query.lower())) & HEALTH_WORDS)
-        need_guidance = ("advice" in intents or "model" in intents or not intents) and on_topic
-        if not intents and not on_topic:
+        need_guidance = ("advice" in intents or "model" in intents or (not intents and not outbreak_q)) and on_topic
+        if not intents and not on_topic and not outbreak_q:
             a.missing.append("the question is outside this system's scope (malaria/dengue surveillance and "
                              "official prevention guidance)")
         if need_guidance:
@@ -363,18 +399,24 @@ class InsightAgent:
                                    _acc=hits["text"].str.contains("Test MAE")).sort_values("_acc", ascending=False)
             # relevant = semantically close, or a strong keyword hit that is also semantically related
             hits = hits[(hits["dense_score"] >= MIN_DENSE) | ((hits["bm25_score"] > 4) & (hits["dense_score"] >= 0.30))]
+            if p["disease"] and len(hits):   # a dengue question must not be answered from a malaria-only document
+                other = [d for d in DISEASE_WORDS if d != p["disease"]]
+                title = hits["title"].str.lower()
+                hits = hits[~(title.str.contains("|".join(other)) & ~title.str.contains(p["disease"]))]
+            terms = {w for w in re.findall(r"[a-z]+", query.lower()) if w not in STOP and len(w) > 2}
             if len(hits):
                 a.lines.append(t["advice_head"])
                 gb = dict(type="guidance", items=[])
                 a.blocks.append(gb)
                 for i, r in enumerate(hits.head(3).itertuples(), start=1):
                     acc = re.findall(r"- (?:Validation|Test|80%)[^\n]*", r.text) if r.kind == "model_card" else []
-                    quote = " ".join(x[2:] for x in acc) if acc else _first_sentences(r.text, 2)
+                    quote = " ".join(x[2:] for x in acc) if acc else _best_sentences(r.text, terms, 2)
                     sid = f"S{i}"
-                    a.citations.append(dict(sid=sid, doc_id=r.doc_id, title=r.title, page=int(r.page), url=r.url,
-                                            quote=quote, chunk_id=r.chunk_id))
+                    a.citations.append(dict(sid=sid, doc_id=r.doc_id, title=r.title, publisher=r.publisher,
+                                            page=int(r.page), url=r.url, quote=quote, chunk_id=r.chunk_id))
                     a.lines.append(f'  - "{quote}" [{sid}]')
-                    gb["items"].append(dict(sid=sid, quote=quote, title=r.title, page=int(r.page), url=r.url))
+                    gb["items"].append(dict(sid=sid, quote=quote, title=r.title, publisher=r.publisher,
+                                            page=int(r.page), url=r.url))
             else:
                 a.missing.append("no passage in the trusted library (NIH advisories/guidelines, WHO fact sheets, "
                                  "IDSR bulletins) supports an answer to this question")
@@ -385,6 +427,17 @@ class InsightAgent:
         if self.use_llm and a.citations:
             self._llm_rewrite(a)
         return a
+
+    def _unknown_place_reason(self, place: str) -> str:
+        """Explain precisely why a named place has no numbers, instead of one generic sentence."""
+        key = place.lower()
+        parts = sorted(d for d in self.districts if key in d.lower())
+        if parts:   # e.g. "Karachi" is split into several districts in the tables
+            return (f"'{place}' is not one district in the NIH IDSR tables; it is reported as {', '.join(parts)}. "
+                    "Please ask about one of these")
+        return (f"'{place}' is not among the {len(self.districts)} districts of Sindh, Balochistan and Khyber "
+                "Pakhtunkhwa in the NIH IDSR district tables (Punjab and Islamabad districts are reported as NR), "
+                "so there are no counts for it")
 
     # ------------------------------------------------------------------ optional LLM wording
     def _llm_rewrite(self, a: Answer) -> None:
@@ -432,6 +485,24 @@ def validate_llm_text(text: str, sids: set[str]) -> bool:
     return bool(points) and (not re.search(r"[0-9۰-۹٠-٩]", unmarked)
                              and all(re.search(r"\[S\d\]", s) for s in points)
                              and set(re.findall(r"\[(S\d)\]", text)) <= sids)
+
+
+def _best_sentences(text: str, terms: set[str], n: int) -> str:
+    """Quote the n sentences of a passage that share the most words with the question (kept in their
+    original order), so a passage is not quoted by an unrelated opening line."""
+    s = re.sub(r"[-]", " ", text)
+    s = re.sub(r"\s+", " ", s).strip()
+    parts = [x for x in re.split(r"(?<=[.!?])\s+", s) if len(x) > 25]
+    # a chunk window can start mid-word ("d control The mosquitoes ..."): drop the fragment
+    parts = [re.sub(r"^[a-z][^A-Z]{0,40}?(?=[A-Z])", "", x) if x[:1].islower() else x for x in parts]
+    if not terms or len(parts) <= n:
+        return _first_sentences(text, n)
+    score = [len(terms & set(re.findall(r"[a-z]+", x.lower()))) for x in parts]
+    if max(score) == 0:
+        return _first_sentences(text, n)
+    keep = sorted(sorted(range(len(parts)), key=lambda i: -score[i])[:n])
+    out = " ".join(parts[i] for i in keep)
+    return out[:400] + ("..." if len(out) > 400 else "")
 
 
 def _first_sentences(text: str, n: int) -> str:

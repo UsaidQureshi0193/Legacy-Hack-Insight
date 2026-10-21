@@ -22,10 +22,11 @@ import pdfplumber
 from rapidfuzz import fuzz
 
 # Bump when parsing logic changes: the extract cache is keyed by (PDF sha256, PARSER_VERSION).
-PARSER_VERSION = "4"
+PARSER_VERSION = "5"
 
 PROVINCES = {
-    "sindh": "Sindh", "balochistan": "Balochistan", "kp": "Khyber Pakhtunkhwa",
+    "sindh": "Sindh", "balochistan": "Balochistan", "baluchistan": "Balochistan",   # 2025_W28 p.9 spells it so
+    "kp": "Khyber Pakhtunkhwa",
     "khyber pakhtunkhwa": "Khyber Pakhtunkhwa", "kpk": "Khyber Pakhtunkhwa", "punjab": "Punjab",
     "ict": "Islamabad", "islamabad": "Islamabad", "ajk": "Azad Kashmir", "gb": "Gilgit-Baltistan",
     "gilgit baltistan": "Gilgit-Baltistan", "gilgit-baltistan": "Gilgit-Baltistan",

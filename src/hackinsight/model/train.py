@@ -60,6 +60,12 @@ def predict(models: dict, X) -> pd.DataFrame:
     return out
 
 
+def baseline_range(last_value, log_q10: float, log_q90: float):
+    """80% range around "next week = this week" from the baseline's own past misses (log scale)."""
+    base = np.log1p(np.asarray(last_value, float))
+    return np.expm1(base + log_q10).clip(0), np.expm1(base + log_q90).clip(0)
+
+
 def mae(a, b) -> float:
     return float(np.mean(np.abs(np.asarray(a, float) - np.asarray(b, float))))
 
@@ -122,6 +128,12 @@ def run_one(gold: pd.DataFrame, disease: str, use_weather=True, use_lags=True, g
     val_mae, params, best_iter = best
     val_base = mae(va["target"], va["baseline"])
 
+    # ---- an 80% range for the BASELINE too (served when the model does not win on validation):
+    # the 10th / 90th percentile of how far "next week = this week" missed on validation weeks,
+    # on the log scale so the range grows with the count. Fitted on validation only.
+    resid = np.log1p(va["target"]) - np.log1p(va["baseline"])
+    b_lo, b_hi = (float(x) for x in np.quantile(resid, [0.1, 0.9]))
+
     # ---- refit on train + validation, score test ONCE
     trva = pd.concat([tr, va])
     rounds = max(50, int(best_iter * 1.1))
@@ -135,13 +147,18 @@ def run_one(gold: pd.DataFrame, disease: str, use_weather=True, use_lags=True, g
         "mean_interval_width": float((te["q90"] - te["q10"]).mean()),
     }
     test["skill_vs_baseline"] = 1 - test["mae_model"] / test["mae_baseline"]
+    b10, b90 = baseline_range(te["baseline"], b_lo, b_hi)
+    test["baseline_interval_coverage_80"] = float(((te["target"] >= b10) & (te["target"] <= b90)).mean())
     test.update(bootstrap_skill(te))
 
     # ---- errors by group
     q = tr["last_value"].quantile([0.5, 0.9]).values
     te["size_band"] = np.select([te["last_value"] <= q[0], te["last_value"] <= q[1]],
                                 ["low (<= median)", "medium"], "high (top 10%)")
-    groups = {c: group_table(te, c) for c in ("province", "poverty_tier", "season", "size_band")}
+    # a grouping with a single value hides nothing and shows nothing (e.g. every test district is in a
+    # "high" MPI province), so only groupings with at least two values are reported
+    groups = {c: group_table(te, c) for c in ("province", "area_type", "poverty_tier", "season", "size_band")
+              if c in te and te[c].nunique(dropna=False) > 1}
     dist_tab = group_table(te, "district")
     groups["district_worst10"] = [r for r in dist_tab if r["n"] >= 10][:10]
 
@@ -154,6 +171,7 @@ def run_one(gold: pd.DataFrame, disease: str, use_weather=True, use_lags=True, g
             "test_target_weeks": [str(te["target_week"].min().date()), str(te["target_week"].max().date())],
             "n_train": len(tr), "n_val": len(va), "n_test": len(te)},
         "validation": {"mae_baseline": val_base, "mae_model": val_mae, "params": params, "best_iter": best_iter},
+        "baseline_interval": {"log_q10": b_lo, "log_q90": b_hi, "fitted_on": "validation residuals of the baseline"},
         "test": test, "groups": groups, "feature_importance_top10": imp.head(10).round(1).to_dict(),
         "features": cols, "use_weather": use_weather, "use_lags": use_lags,
         "train_seconds": round(seconds, 1), "peak_rss_mb_delta": round((proc.memory_info().rss - mem0) / 2**20, 1),
@@ -168,27 +186,34 @@ def _save(disease, models, res, te, df, cols) -> None:
     out = config.ARTIFACTS / f"model_{disease}"
     out.mkdir(parents=True, exist_ok=True)
     champion = out / "metrics.json"
-    if champion.exists():
+    files = {q: out / f"q{int(q*100)}.txt" for q in config.QUANTILES}
+    keep = False
+    if champion.exists() and all(f.exists() for f in files.values()):
         old = json.loads(champion.read_text(encoding="utf-8"))
         # champion / challenger on VALIDATION (the test set is never used to choose)
-        if old.get("validation", {}).get("mae_model", 1e18) < res["validation"]["mae_model"] * 0.98 \
-                and old.get("features") == res["features"]:
-            res["kept_previous_model"] = True
-            print(f"  {disease}: new model not better on validation; keeping previous champion")
-            return
-    for q, m in models.items():
-        m.save_model(str(out / f"q{int(q*100)}.txt"))
-    champion.write_text(json.dumps(res, indent=2, default=str), encoding="utf-8")
-    te_out = te[["target_row_id", "row_id", "district_id", "district", "province", "target_week", "target",
-                 "baseline", "q10", "q50", "q90"]].rename(columns={"row_id": "input_row_id"})
-    te_out.to_parquet(out / "test_predictions.parquet", index=False)
+        keep = old.get("validation", {}).get("mae_model", 1e18) < res["validation"]["mae_model"] * 0.98 \
+            and old.get("features") == res["features"]
+    if keep:
+        # keep the champion's models and metrics, but still rebuild its forecast below: after a full
+        # `make data` the warehouse has no forecast tables, and the dashboard must not lose them
+        print(f"  {disease}: new model not better on validation; keeping previous champion")
+        models = {q: lgb.Booster(model_file=str(f)) for q, f in files.items()}
+        res = {**old, "kept_previous_model": True}
+        te_out = pd.read_parquet(out / "test_predictions.parquet")
+    else:
+        for q, m in models.items():
+            m.save_model(str(files[q]))
+        champion.write_text(json.dumps(res, indent=2, default=str), encoding="utf-8")
+        te_out = te[["target_row_id", "row_id", "district_id", "district", "province", "target_week", "target",
+                     "baseline", "q10", "q50", "q90"]].rename(columns={"row_id": "input_row_id"})
+        te_out.to_parquet(out / "test_predictions.parquet", index=False)
 
     # forecast: for each district, the latest week with a value -> predict the following week
     latest = df[df["last_value"].notna()].sort_values("week_start").groupby("district_id").tail(1)
     recent = latest[latest["week_start"] >= latest["week_start"].max() - pd.Timedelta(weeks=4)]
     fc = recent.join(predict(models, recent[cols]))
     # Serve the model only if it beat the declared baseline on VALIDATION (decided before the test
-    # set is looked at). Otherwise the forecast is the baseline itself, with no fake interval.
+    # set is looked at). Otherwise the forecast is the baseline itself, with the baseline's own range.
     use_model = res["validation"]["mae_model"] < res["validation"]["mae_baseline"]
     res["served_method"] = "model" if use_model else "baseline (model did not beat baseline on validation)"
     champion.write_text(json.dumps(res, indent=2, default=str), encoding="utf-8")
@@ -196,8 +221,11 @@ def _save(disease, models, res, te, df, cols) -> None:
     card.write(res)
     if not use_model:
         fc["q50"] = fc["last_value"]
-        fc["q10"] = float("nan")
-        fc["q90"] = float("nan")
+        bi = res.get("baseline_interval")   # a champion trained before this existed has none: no range
+        if bi:
+            fc["q10"], fc["q90"] = baseline_range(fc["last_value"], bi["log_q10"], bi["log_q90"])
+        else:
+            fc["q10"] = fc["q90"] = float("nan")
     fc["method"] = "model_q50" if use_model else "baseline_last_value"
     fc["forecast_week"] = fc["week_start"] + pd.Timedelta(days=7)
     fc["forecast_id"] = [f"fc-{disease}-{a}-{b.date()}" for a, b in zip(fc["district_id"], fc["forecast_week"])]
@@ -216,9 +244,27 @@ def _save(disease, models, res, te, df, cols) -> None:
     fc.to_parquet(config.PROCESSED / f"forecast_{disease}.parquet", index=False)
 
 
+def weather_decision() -> tuple[bool, str]:
+    """Training follows the optimization log: weather features are used only if the measured
+    experiment (validation MAE, never test) kept them, and only if the source is switched on."""
+    if "open_meteo" in config.EXCLUDED_SOURCES:
+        return False, "Open-Meteo switched off (HI_EXCLUDE_SOURCES)"
+    p = config.ARTIFACTS / "optimization_log.json"
+    if p.exists():
+        log = json.loads(p.read_text(encoding="utf-8"))
+        changes = log.get("changes", log) if isinstance(log, dict) else log
+        w = next((c for c in changes if str(c.get("change", "")).startswith("Add weather")), None)
+        if w is not None and "before" in w:
+            return bool(w["kept"]), (f"optimization log: validation MAE {w['before']['val_mae']} without vs "
+                                     f"{w['after']['val_mae']} with weather")
+    return True, "no optimization log yet: default on"
+
+
 def run() -> dict:
     gold = load_gold()
-    out = {d: run_one(gold, d) for d in config.TARGET_DISEASES}
+    use_weather, why = weather_decision()
+    print(f"  weather features: {'on' if use_weather else 'off'} ({why})")
+    out = {d: run_one(gold, d, use_weather=use_weather) for d in config.TARGET_DISEASES}
     p = out[config.PRIMARY_DISEASE]
     head = {"disease": config.PRIMARY_DISEASE}
     if "test" in p:

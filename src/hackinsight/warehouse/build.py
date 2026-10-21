@@ -51,6 +51,13 @@ def poverty_tier(mpi: float) -> str:
     return "low" if mpi < 0.10 else ("medium" if mpi < 0.25 else "high")
 
 
+def area_type(urban_share: float) -> str:
+    """District-level urban/rural group for error analysis (2017 census urban population share)."""
+    if pd.isna(urban_share):
+        return "unknown"
+    return "mostly urban" if urban_share >= 0.5 else "mostly rural"
+
+
 MPI_PROVINCE = {"Sindh": "Sindh", "Balochistan": "Balochistan", "Khyber Pakhtunkhwa": "Khyber Pakhtunkhwa",
                 "Punjab": "Punjab", "Islamabad (ICT)": "Islamabad", "Azad Jammu and Kashmir": "Azad Kashmir",
                 "Gilgit Baltistan": "Gilgit-Baltistan"}
@@ -143,25 +150,51 @@ def build_cleaned(con, agent: DataQualityAgent, ext, probs, weather_raw, adm2, m
         con.register("_w", w)
         con.execute("CREATE OR REPLACE TABLE cleaned.weather_hourly AS SELECT * FROM _w")
         con.unregister("_w")
+    else:   # no weather (source switched off): no stale weather table may feed gold
+        con.execute("DROP TABLE IF EXISTS cleaned.weather_hourly")
     return {"idsr_rows": len(idsr), "weather_rows": len(weather_raw), "districts_matched": int(m["district_id"].notna().sum()),
             "districts_unmatched": len(un)}
 
 
 def _population_by_pcode(pop: pd.DataFrame, adm2: pd.DataFrame, agent) -> pd.DataFrame:
-    """Population 2017 (COD-PS) by district pcode. Districts created after 2017 have no row ->
-    population stays missing and per-100k rates are not computed for them (flagged)."""
-    cols = {c.lower(): c for c in pop.columns}
-    pc = next((cols[c] for c in cols if "adm2" in c and "pcode" in c), None)
-    tot = next((cols[c] for c in cols if c in ("t_tl", "total", "pop_total", "both_sexes", "total_population")), None)
-    if tot is None:
-        num = [c for c in pop.columns if pd.api.types.is_numeric_dtype(pop[c])]
-        tot = max(num, key=lambda c: pop[c].fillna(0).sum()) if num else None
-    if pc is None or tot is None:
+    """Population 2017 (COD-PS) per boundary district. The COD-PS sheet uses an OLDER pcode scheme
+    than the OCHA boundaries (PK701 is Awaran there but Badin here), so rows are matched by district
+    NAME within the province, with the same matcher as the IDSR names - never by pcode. Districts
+    created after 2017 have no row -> population stays missing and per-100k is not computed (flagged)."""
+    cols = {c.lower().replace("admin", "adm"): c for c in pop.columns}
+    name = next((cols[c] for c in cols if "adm2" in c and "name" in c), None)
+    prov = next((cols[c] for c in cols if "adm1" in c and "name" in c), None)
+    tot = next((cols[c] for c in cols if c in ("total_pop", "t_tl", "total", "pop_total", "both_sexes",
+                                               "total_population")), None)
+    if name is None or prov is None or tot is None:
         agent.log(Decision("gate1", "population_schema", "POP-P1", "FLAG", "cleaned.districts", 0,
-                           "Population sheet has no recognisable pcode/total column; per-100k rates disabled."))
-        return pd.DataFrame(columns=["district_id", "population_2017"])
-    p = pop[[pc, tot]].rename(columns={pc: "district_id", tot: "population_2017"})
-    p = p.groupby("district_id", as_index=False)["population_2017"].sum()
+                           "Population sheet has no recognisable district name / province / total column; "
+                           "per-100k rates disabled."))
+        return pd.DataFrame(columns=["district_id", "population_2017", "urban_share_2017"])
+    urb = next((cols[c] for c in cols if c in ("urban_pop", "u_tl", "urban")), None)
+    rows = pop[[prov, name, tot]].rename(columns={prov: "province", name: "place", tot: "population_2017"})
+    rows["urban_share_2017"] = (pop[urb] / pop[tot]).round(3) if urb else float("nan")
+    m = geo.match(rows[["province", "place"]].drop_duplicates(), adm2)
+    p = rows.merge(m[["province", "place", "district_id", "match_method"]], on=["province", "place"], how="left")
+    p = p.dropna(subset=["district_id"])
+    # an exact/alias name beats a fuzzy one ("Peshawar" over "FR Peshawar"); any other case of two 2017
+    # rows landing on one district would mean a wrong match or a merge: leave it missing
+    p["_exact"] = p["match_method"].isin(["exact", "alias"])
+    n_exact = p.groupby("district_id")["_exact"].transform("sum")
+    p = p[~((n_exact == 1) & ~p["_exact"])].drop(columns="_exact")
+    dup = p["district_id"].duplicated(keep=False)
+    if dup.any():
+        agent.log(Decision("gate1", "population_ambiguous", "POP-P3", "FLAG", "cleaned.districts",
+                           int(p.loc[dup, "district_id"].nunique()),
+                           "Several 2017 census districts matched the same boundary district; its population is "
+                           "left missing instead of guessed.", p.loc[dup, "place"].head(10).tolist()))
+        p = p[~dup]
+    agent.log(Decision("gate1", "population_match", "POP-P4", "PASS", "cleaned.districts", len(p),
+                       f"2017 census population joined to {len(p)} districts by name within province "
+                       f"(exact {int(p['match_method'].eq('exact').sum())}, fuzzy {int(p['match_method'].eq('fuzzy').sum())}, "
+                       f"alias {int(p['match_method'].eq('alias').sum())}); pcodes are not comparable between the files.",
+                       status="info"))
+    p = p[["district_id", "population_2017", "urban_share_2017"]]
     missing = adm2.loc[~adm2["adm2_pcode"].isin(p["district_id"]), "adm2_name"]
     if len(missing):
         agent.log(Decision("gate1", "population_missing", "POP-P2", "FLAG", "cleaned.districts", len(missing),
@@ -220,7 +253,9 @@ def build_gold(con, agent: DataQualityAgent) -> tuple[bool, dict]:
     g["cases"] = g["cases"].astype("Int64")
 
     # names, population, poverty, season
-    g = g.merge(dist[["district_id", "district", "lat", "lon", "population_2017"]], on="district_id", how="left")
+    g = g.merge(dist[["district_id", "district", "lat", "lon", "population_2017", "urban_share_2017"]],
+                on="district_id", how="left")
+    g["area_type"] = g["urban_share_2017"].map(area_type)
     g = g.merge(pov[["province", "mpi"]], on="province", how="left")
     g["poverty_tier"] = g["mpi"].map(poverty_tier)
     g["season"] = season_of(g["week_start"])
@@ -295,6 +330,7 @@ def build_gold(con, agent: DataQualityAgent) -> tuple[bool, dict]:
         cols_order = ["row_id", "district_id", "district", "province", "disease", "week_start", "cases",
                       "cases_status", "value_raw", "source_file", "page", "place", "cases_for_features",
                       "lag_source_filled", "is_outlier", "population_2017", "cases_per_100k", "mpi", "poverty_tier",
+                      "urban_share_2017", "area_type",
                       "season", "lat", "lon"]
         wcols = [c for c in ["temp_mean_c", "temp_max_c", "temp_min_c", "rh_mean_pct", "precip_sum_mm", "rain_hours",
                              "weather_hours", "weather_filled_hours"] if c in g.columns]

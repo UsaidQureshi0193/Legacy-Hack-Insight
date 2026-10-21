@@ -9,8 +9,8 @@ hissa yahan simple Roman Urdu mein samjhaya gaya hai. Pehle poori guide parho, p
 
 **District health officer** (Sindh, Balochistan, KP) ko har hafte batana ke **agle hafte kis district mein
 malaria / dengue ke suspected cases sab se zyada honge** (range ke saath), aur NIH/WHO ki official guidance
-**citation ke saath** dena, English aur Urdu dono mein. Faisla: dawaiyan, RDT test kits, beds aur fumigation
-teams kahan bhejni hain.
+**citation ke saath** dena, English aur Urdu dono mein. Faisla: agle hafte kin districts ko investigation,
+surveillance aur resource planning ke liye pehle dekhna hai (supplies official channels se plan hoti hain).
 
 ```
 NIH IDSR PDFs ─┐
@@ -28,7 +28,7 @@ HDX (MPI/pop) ─┘                                                            
 |---|---|---|
 | **NIH Pakistan IDSR weekly bulletins** (nih.org.pk) | Har hafte ki PDF. Har province ki district table: Malaria, Dengue, Typhoid... suspected cases | Yeh **asal Pakistani surveillance data** hai, district level par. Track list mein nahi hai, to "non-track credible source" wali shart poori hoti hai |
 | **Open-Meteo archive + forecast** | Har district ke centroid par hourly temperature, humidity, baarish (UTC) | Machhar ko paani aur garmi chahiye. Baarish ke 2-4 hafte baad cases barhte hain |
-| **OpenDengue v1.3** (Figshare, CC BY 4.0) | Pakistan dengue ki purani national/province series | Benchmark aur purani history; validation ke liye local reference |
+| **OpenDengue v1.3** (Figshare, CC BY 4.0) | Pakistan dengue ki purani national/province series | Purani history, aur hamari PDF parsing ka check (yeh NIH se independent NAHI hai: iska Pakistan data WHO/MoH ke zariye usi national reporting se aata hai) |
 | **HDX** (OCHA boundaries, 2017 census population, OPHI MPI) | District codes (pcodes) aur centroids, population, province poverty index | District ko ek stable ID dena, per-100k rate, aur **income group fairness** |
 
 **Kyun yeh "credible" hai:** original publisher ka naam hai (NIH, WMO-based ERA5, OCHA, OPHI), licence
@@ -204,7 +204,7 @@ Linux/Mac par yahi targets `make data`, `make train` waghera se chalte hain.
 results section mein bhi hain.)
 
 * **Yeh problem kyun?** Malaria aur dengue har saal monsoon ke baad Sindh/Balochistan/KP mein phailte hain.
-  District officer ko pehle se pata ho to kits, dawai aur fumigation sahi jagah pahunchti hai.
+  District officer ko pehle se pata ho to woh sahi districts ko pehle investigate kar sakta hai aur planning waqt pe hoti hai.
 * **Kaise pata ke problem asli hai?** NIH ke apne bulletins (jaise Week 39 2026 mein Sindh mein ek hafte mein
   ~68 hazaar suspected malaria cases) aur NIH ki dengue advisories.
 * **Sources kyun, licence kya?** NIH (government public report, robots.txt allow), Open-Meteo CC BY 4.0

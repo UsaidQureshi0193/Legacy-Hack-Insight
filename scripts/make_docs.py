@@ -132,8 +132,8 @@ def summary(f: dict) -> None:
                             topMargin=1.1 * cm, bottomMargin=1.0 * cm)
     w = A4[0] - 2.8 * cm
     el = [Paragraph("Malaria &amp; Dengue Early Warning for Pakistani Districts - Summary", H1),
-          Paragraph("<b>User &amp; decision:</b> district health officers (Sindh, Balochistan, KP) deciding where to send "
-                    "RDT kits, antimalarials, beds and fumigation teams next week. <b>Output:</b> next-week suspected cases "
+          Paragraph("<b>User &amp; decision:</b> district health officers (Sindh, Balochistan, KP) deciding which districts "
+                    "to prioritise next week for investigation, surveillance and resource planning. <b>Output:</b> next-week suspected cases "
                     "per district with an 80% range + cited NIH/WHO guidance in English and Urdu.", P),
           Paragraph("Data &amp; quality", H2),
           Paragraph(f"NIH IDSR bulletins ({f['idsr_bulletins']} PDFs, {f['idsr_rows']:,} cells), Open-Meteo hourly weather "
@@ -162,8 +162,8 @@ def summary(f: dict) -> None:
           Paragraph("Business model &amp; Pakistan impact", H2),
           Paragraph("Free to districts, funded by provincial health departments or malaria/dengue programme partners "
                     "(contract/grant); small running cost (one small VM, free Space tier for a pilot, optional LLM wording at about "
-                    "$0.01 per answer). Built entirely on Pakistani surveillance data, with Urdu outputs. Local validation: our "
-                    f"parsed NIH national dengue totals equal OpenDengue's monthly Pakistan series in {lv['exact_match_months']} of "
+                    "$0.01 per answer). Built entirely on Pakistani surveillance data, with Urdu outputs. Extraction check: our "
+                    f"parsed NIH national dengue totals equal OpenDengue's (WHO-compiled, same national reports) monthly series in {lv['exact_match_months']} of "
                     f"{lv['months']} months (r = {lv['correlation']}); {lv['mismatch_months_with_missing_bulletin_week']} other months "
                     f"miss a bulletin week, {lv['mismatch_months_unexplained']} differs unexplained. District sums are checked "
                     "against each bulletin's province total.", P),

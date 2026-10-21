@@ -39,6 +39,18 @@ def clean_working_folders() -> None:
     config.ensure_dirs()
 
 
+# Raw files that may be missing on a fresh clone without breaking the chain of evidence:
+#  * NIH listing pages are dated snapshots of a page that keeps changing; an old snapshot cannot be
+#    fetched again (the bulletin PDFs it pointed to are fetched and hash-verified on their own)
+#  * Open-Meteo archive chunks over the API budget are fetched by the next hourly runs
+# They are FLAGGED in the quality log, never ignored silently. A hash MISMATCH always fails the run.
+SNAPSHOT_PREFIXES = ("data/raw/nih_idsr/listings/", "data/raw/open_meteo/")
+
+
+def is_unrefetchable(problem: str) -> bool:
+    return problem.startswith("missing: ") and problem.split(": ", 1)[1].startswith(SNAPSHOT_PREFIXES)
+
+
 def verify_raw(manifest: Manifest) -> list[str]:
     """Re-hash every raw file. Missing files are re-fetched by the fetch steps; a hash mismatch
     on a file that exists means it was edited -> delete it so it is fetched again from source."""
@@ -119,7 +131,7 @@ def run(full_rebuild: bool, fetch: bool = True, weather: bool = True) -> dict:
     manifest = Manifest()
     steps["verify_raw"] = {"problems": verify_raw(manifest)}
     profile = profile_sources.run(force=full_rebuild) if fetch else []
-    rejected = profile_sources.rejected(profile)
+    rejected = profile_sources.rejected(profile) | config.EXCLUDED_SOURCES
     steps["gate0"] = {p["source"]: p["decision"] for p in profile}
     if fetch:
         steps["fetch"] = step_fetch(manifest, incremental=not full_rebuild, rejected=rejected)
@@ -130,10 +142,12 @@ def run(full_rebuild: bool, fetch: bool = True, weather: bool = True) -> dict:
 
     if weather and fetch and "open_meteo" not in rejected:
         steps["weather"] = step_weather(manifest, matched_districts(ext), incremental=not full_rebuild)
-    weather_raw = load_weather_raw()
+    weather_raw = pd.DataFrame() if "open_meteo" in rejected else load_weather_raw()
 
     # Every raw file used must be in the manifest with a valid hash before we build anything.
     final_problems = manifest.verify()
+    snapshots_missing = [p for p in final_problems if is_unrefetchable(p)]
+    final_problems = [p for p in final_problems if not is_unrefetchable(p)]
     con = duckdb.connect(str(config.WAREHOUSE))
     agent = DataQualityAgent(con, run_id)
     for p in profile:
@@ -142,6 +156,12 @@ def run(full_rebuild: bool, fetch: bool = True, weather: bool = True) -> dict:
                             "REJECT": "FLAG"}[p["decision"]], p["source"], 0,
                            f"{p['name']}: {p['decision']} - {p['why']}." + (" Not fetched." if p["decision"] in ("REJECT", "NOT_USED") else ""),
                            status="info" if p["decision"] == "ACCEPT" else "applied"))
+    if snapshots_missing:
+        agent.log(Decision("gate0", "manifest_snapshots", "MANIFEST-SNAPSHOT", "FLAG", "raw", len(snapshots_missing),
+                           "Raw files in manifest.csv are not on this machine and cannot be fetched again now: dated "
+                           "NIH listing snapshots (the bulletin PDFs themselves are verified) or Open-Meteo chunks "
+                           "deferred by the API budget (fetched by later runs). Built from the verified files only.",
+                           snapshots_missing[:5]))
     if final_problems:
         agent.log(Decision("gate0", "manifest", "MANIFEST", "FAIL", "raw", len(final_problems),
                            "Raw files do not match manifest.csv after fetching; refusing to build.",
@@ -185,6 +205,10 @@ def print_summary(status: dict) -> None:
     print("\n================ make data summary ================")
     print(f"run {r['run_id']}  status={r['status']}  {r.get('duration_s')} s")
     for k, v in r.get("steps", {}).items():
+        if k == "verify_raw":   # one line, not one path per missing snapshot
+            probs = v.get("problems", [])
+            edited = sum(p.startswith("sha256 mismatch") for p in probs)
+            v = {"sha256_mismatch_refetched": edited, "missing_at_start": len(probs) - edited}
         print(f"  {k:10s} {v}")
     print(f"quality gate: {q['status']}  decisions: {q['counts']}")
     for src, f in status.get("freshness", {}).items():

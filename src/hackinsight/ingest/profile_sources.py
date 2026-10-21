@@ -69,11 +69,17 @@ def _alive(url: str) -> tuple[bool, str]:
         return False, f"not reachable ({type(e).__name__})"
 
 
+def _apply_exclusions(sources: list[dict]) -> list[dict]:
+    """A source switched off with HI_EXCLUDE_SOURCES is REJECTED whatever its checks said."""
+    return [{**p, "decision": "REJECT", "why": "switched off by the team (HI_EXCLUDE_SOURCES); not fetched, not used"}
+            if p["source"] in config.EXCLUDED_SOURCES else p for p in sources]
+
+
 def run(force: bool = False) -> list[dict]:
     if PROFILE.exists() and not force:
         old = json.loads(PROFILE.read_text(encoding="utf-8"))
         if time.time() - old.get("checked_epoch", 0) < 86400:
-            return old["sources"]
+            return _apply_exclusions(old["sources"])
     out = []
     for c in CANDIDATES:
         robots, robots_note = _robots_ok(c["url"])
@@ -92,7 +98,9 @@ def run(force: bool = False) -> list[dict]:
         else:
             decision, why = "ACCEPT", f"{robots_note}; licence recorded; {alive_note}"
         out.append({**c, "robots": robots, "alive": alive, "decision": decision, "why": why})
-        print(f"  gate0 {c['source']:11s} {decision:6s} {why}")
+    out = _apply_exclusions(out)
+    for p in out:
+        print(f"  gate0 {p['source']:11s} {p['decision']:6s} {p['why']}")
     PROFILE.write_text(json.dumps({"checked_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                                    "checked_epoch": time.time(), "sources": out}, indent=2), encoding="utf-8")
     return out

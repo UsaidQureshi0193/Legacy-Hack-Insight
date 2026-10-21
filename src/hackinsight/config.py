@@ -78,6 +78,10 @@ TEST_START = "2025-10-01"
 QUANTILES = (0.1, 0.5, 0.9)
 
 # Freshness: a source is "late" when its newest record is older than this many hours.
+# Sources the team has switched off (e.g. the organisers did not approve one): Gate 0 rejects them,
+# nothing is fetched or read from disk, and the model trains without their features.
+#   HI_EXCLUDE_SOURCES=open_meteo
+EXCLUDED_SOURCES = {s.strip() for s in os.environ.get("HI_EXCLUDE_SOURCES", "").split(",") if s.strip()}
 FRESHNESS_SLA_H = {"nih_idsr": 24 * 14, "open_meteo": 6, "opendengue": 24 * 400, "hdx": 24 * 800}
 
 

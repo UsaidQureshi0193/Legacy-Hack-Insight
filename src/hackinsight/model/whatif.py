@@ -23,7 +23,9 @@ def available(disease: str) -> bool:
     p = config.ARTIFACTS / f"model_{disease}" / "metrics.json"
     if not p.exists() or not (config.ARTIFACTS / f"model_{disease}" / "q50.txt").exists():
         return False
-    return json.loads(p.read_text(encoding="utf-8")).get("served_method", "model") == "model"
+    m = json.loads(p.read_text(encoding="utf-8"))
+    # a rain scenario only means something if the served model actually uses rainfall
+    return m.get("served_method", "model") == "model" and any("precip" in f for f in m.get("features", []))
 
 
 def scenario(disease: str, district: str, rain_change: float) -> pd.DataFrame:

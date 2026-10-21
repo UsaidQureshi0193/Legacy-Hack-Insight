@@ -45,10 +45,12 @@ def run() -> dict:
         if g.get("cite_any"):
             cite_ok = any(any(d.startswith(p) for p in g["cite_any"]) for d in cited)
         n_ok, n_all = _check_numbers(agent, a.numbers)
+        # a required statement (e.g. "does not declare outbreaks") must appear in the answer text
+        say_ok = (g["must_say"].lower() in a.render().lower()) if g.get("must_say") else None
         rows.append({"id": g["id"], "lang": g["lang"], "expect": g["expect"], "got": got,
                      "refusal_correct": got == g["expect"], "citation_ok": cite_ok,
                      "numbers_needed": bool(g.get("needs_numbers")), "numbers": n_all, "numbers_faithful": n_ok,
-                     "cited": ";".join(cited[:3]), "missing": "; ".join(a.missing)})
+                     "cited": ";".join(cited[:3]), "missing": "; ".join(a.missing), "statement_ok": say_ok})
     df = pd.DataFrame(rows)
     cit = df["citation_ok"].dropna()
     summary = {
@@ -57,6 +59,8 @@ def run() -> dict:
         "citation_accuracy": round(float(cit.astype(bool).mean()), 3) if len(cit) else None,
         "number_faithfulness": round(float(df["numbers_faithful"].sum() / max(df["numbers"].sum(), 1)), 3),
         "numbers_checked": int(df["numbers"].sum()),
+        "required_statements_ok": (round(float(df["statement_ok"].dropna().astype(bool).mean()), 3)
+                                   if df["statement_ok"].notna().any() else None),
         "numbers_present_when_needed": round(float((df.loc[df["numbers_needed"], "numbers"] > 0).mean()), 3),
     }
     rep = {"summary": summary, "items": rows}
